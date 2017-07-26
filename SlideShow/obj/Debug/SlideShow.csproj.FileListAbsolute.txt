@@ -1,0 +1,9 @@
+c:\users\hifi015_03\documents\visual studio 2015\Projects\SlideShow\SlideShow\bin\Debug\SlideShow.exe.config
+c:\users\hifi015_03\documents\visual studio 2015\Projects\SlideShow\SlideShow\bin\Debug\SlideShow.exe
+c:\users\hifi015_03\documents\visual studio 2015\Projects\SlideShow\SlideShow\bin\Debug\SlideShow.pdb
+c:\users\hifi015_03\documents\visual studio 2015\Projects\SlideShow\SlideShow\obj\Debug\SlideShow.csprojResolveAssemblyReference.cache
+c:\users\hifi015_03\documents\visual studio 2015\Projects\SlideShow\SlideShow\obj\Debug\SlideShow.MainFrm.resources
+c:\users\hifi015_03\documents\visual studio 2015\Projects\SlideShow\SlideShow\obj\Debug\SlideShow.Properties.Resources.resources
+c:\users\hifi015_03\documents\visual studio 2015\Projects\SlideShow\SlideShow\obj\Debug\SlideShow.csproj.GenerateResource.Cache
+c:\users\hifi015_03\documents\visual studio 2015\Projects\SlideShow\SlideShow\obj\Debug\SlideShow.exe
+c:\users\hifi015_03\documents\visual studio 2015\Projects\SlideShow\SlideShow\obj\Debug\SlideShow.pdb
