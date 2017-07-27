@@ -20,7 +20,7 @@ namespace SlideShow
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Détecte la fermeture et demande un mot de passe
-            if (MessageBox.Show("Souhaitez-vous quitter le diaporama ?", "Fermeture demandée",
+            if (MessageBox.Show("Souhaitez-vous vraiment quitter le diaporama ?", "Quitter ?",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) == DialogResult.No)
             {
