@@ -27,5 +27,10 @@ namespace SlideShow
                 e.Cancel = true;
             }
         }
+
+        private void MainFrm_Load(object sender, EventArgs e)
+        {
+            this.webBrowser.Navigate("http://www.chiwawaweb.com/slideshow");
+        }
     }
 }

@@ -33,7 +33,6 @@
             // 
             // webBrowser
             // 
-            this.webBrowser.AllowNavigation = false;
             this.webBrowser.AllowWebBrowserDrop = false;
             this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webBrowser.Location = new System.Drawing.Point(0, 0);
@@ -43,8 +42,7 @@
             this.webBrowser.Size = new System.Drawing.Size(636, 445);
             this.webBrowser.TabIndex = 0;
             this.webBrowser.TabStop = false;
-            this.webBrowser.Url = new System.Uri("http://www.chiwawaweb.com/slideshow", System.UriKind.Absolute);
-            this.webBrowser.WebBrowserShortcutsEnabled = false;
+            this.webBrowser.Url = new System.Uri("", System.UriKind.Relative);
             // 
             // MainFrm
             // 
@@ -64,6 +62,7 @@
             this.Text = "SlideShow";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrm_FormClosing);
+            this.Load += new System.EventHandler(this.MainFrm_Load);
             this.ResumeLayout(false);
 
         }
