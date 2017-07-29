@@ -1,0 +1,8 @@
+C:\wamp64\www\slideshow\SlideShow\bin\Release\SlideShow.exe.config
+C:\wamp64\www\slideshow\SlideShow\bin\Release\SlideShow.exe
+C:\wamp64\www\slideshow\SlideShow\bin\Release\SlideShow.pdb
+C:\wamp64\www\slideshow\SlideShow\obj\Release\SlideShow.MainFrm.resources
+C:\wamp64\www\slideshow\SlideShow\obj\Release\SlideShow.Properties.Resources.resources
+C:\wamp64\www\slideshow\SlideShow\obj\Release\SlideShow.csproj.GenerateResource.Cache
+C:\wamp64\www\slideshow\SlideShow\obj\Release\SlideShow.exe
+C:\wamp64\www\slideshow\SlideShow\obj\Release\SlideShow.pdb
