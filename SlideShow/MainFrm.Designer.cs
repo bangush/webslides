@@ -28,8 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrm));
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
+            // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Interval = 300000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // webBrowser
             // 
@@ -43,11 +52,15 @@
             this.webBrowser.TabIndex = 0;
             this.webBrowser.TabStop = false;
             this.webBrowser.Url = new System.Uri("", System.UriKind.Relative);
+            this.webBrowser.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.webBrowser_PreviewKeyDown);
             // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(636, 445);
             this.ControlBox = false;
             this.Controls.Add(this.webBrowser);
@@ -63,12 +76,13 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrm_FormClosing);
             this.Load += new System.EventHandler(this.MainFrm_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainFrm_KeyUp);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
+        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.WebBrowser webBrowser;
     }
 }
