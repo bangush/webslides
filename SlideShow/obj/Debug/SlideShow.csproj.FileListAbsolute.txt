@@ -16,3 +16,4 @@ C:\wamp64\www\slideshow\SlideShow\obj\Debug\SlideShow.csprojResolveAssemblyRefer
 C:\wamp64\www\slideshow\SlideShow\obj\Debug\SlideShow.MainFrm.resources
 C:\wamp64\www\slideshow\SlideShow\obj\Debug\SlideShow.Properties.Resources.resources
 C:\wamp64\www\slideshow\SlideShow\obj\Debug\SlideShow.csproj.GenerateResource.Cache
+C:\wamp64\www\slideshow\SlideShow\obj\Debug\SlideShow.Password.resources

@@ -25,8 +25,12 @@ namespace SlideShow
 
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Détecte la fermeture et demande un mot de passe
-            if (MessageBox.Show("Souhaitez-vous vraiment quitter le diaporama ?", "Quitter ?",
+            // détecte la fermeture et demande un mot de passe
+            // ouvre la boite de dialogue du mot de passe
+            Password frm = new Password();
+            frm.ShowDialog();
+
+            if (MessageBox.Show("Souhaitez-vous vraiment quitter le slideshow ?", "Quitter ?",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) == DialogResult.No)
             {
@@ -38,23 +42,6 @@ namespace SlideShow
         {
             // vérifie la présence d'une connexion Internet
             CheckInternetConnection();
-            /*
-            int Desc;
-            if (InternetGetConnectedState(out Desc,0))
-            {
-                // connexion internet ok
-                webBrowser.Visible = true;
-                
-            }
-            else
-            {
-                // pas de connexion internet
-                // on affiche une image de remplacement
-                webBrowser.Visible = false;
-            }
-
-            this.webBrowser.Navigate("http://slideshow.chiwawaweb.com");
-            */
         }
 
         private void MainFrm_KeyUp(object sender, KeyEventArgs e)
@@ -75,11 +62,8 @@ namespace SlideShow
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            // vérifie si connexion internet active
+            // vérifie si connexion internet active à intervalles réguliers
             CheckInternetConnection();
-            /*
-            this.webBrowser.Navigate("http://slideshow.chiwawaweb.com");
-            */
         }
 
         public void CheckInternetConnection()
@@ -90,7 +74,6 @@ namespace SlideShow
                 // connexion internet ok
                 webBrowser.Visible = true;
                 webBrowser.Navigate("http://slideshow.chiwawaweb.com");
-
             }
             else
             {
