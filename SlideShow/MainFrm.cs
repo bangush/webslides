@@ -50,7 +50,7 @@ namespace SlideShow
                 webBrowser.Visible = false;
             }
 
-            this.webBrowser.Navigate("http://www.chiwawaweb.com/slideshow");
+            this.webBrowser.Navigate("http://slideshow.chiwawaweb.com");
         }
 
         private void MainFrm_KeyUp(object sender, KeyEventArgs e)
