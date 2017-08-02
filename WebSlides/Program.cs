@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.Compression;
+using System.IO;
 
 namespace WebSlides
 {
@@ -22,10 +24,14 @@ namespace WebSlides
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+
+            
+
+
             String[] arguments = Environment.GetCommandLineArgs();
-            action = arguments[1].Substring(0, 2);
-            
-            
+            //action = arguments[1].Substring(0, 2);
+            action = "GetCommandLineArgs: {0} "+ String.Join(", ", arguments);
+            MessageBox.Show(action);
 
             if (action == "/s")
             {
@@ -35,19 +41,37 @@ namespace WebSlides
             else if (action == "/c")
             {
                 // Page de configuration
-                MessageBox.Show(
+
+                SetupFrm frm = new SetupFrm();
+                frm.ShowDialog();
+
+                /*MessageBox.Show(
                     "Cet écran de veille n'est pas configurable.",
                     "WebSlides", 
                     MessageBoxButtons.OK, 
-                    MessageBoxIcon.Asterisk);
+                    MessageBoxIcon.Asterisk);*/
             }
 
             else
             {
-                // Sinon on ferme l'application
+                // Sinon on crée le fichier de config et on ferme l'appli.
+                StreamWriter file = new StreamWriter(@"WebSlides.ini");
+
+                // vérifie si le fichier de config existe déjà
+
+
+                //MessageBox.Show("Le fichier a bien été créé dans l'emplacement spécifié!", "ok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                file.Write("http://webslides.chiwawaweb.com");
+                file.Close();
+
+                // fermeture de l'application
                 Application.Exit();    
             }
+
+
                 
         }
+
+
     }
 }

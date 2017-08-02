@@ -10,7 +10,6 @@ C:\wamp64\www\webslides\SlideShow\obj\Debug\WebSlide.pdb
 C:\wamp64\www\webslides\WebSlides\obj\Debug\WebSlides.csprojResolveAssemblyReference.cache
 C:\wamp64\www\webslides\WebSlides\obj\Debug\WebSlides.MainFrm.resources
 C:\wamp64\www\webslides\WebSlides\obj\Debug\WebSlides.csproj.GenerateResource.Cache
-C:\wamp64\www\webslides\WebSlides\obj\Debug\WebSlides.Splash.resources
 C:\wamp64\www\webslides\WebSlides\bin\Debug\WebSlides.pdb
 C:\wamp64\www\webslides\WebSlides\obj\Debug\WebSlides.Properties.Resources.resources
 C:\wamp64\www\webslides\WebSlides\obj\Debug\WebSlides.pdb
@@ -22,3 +21,4 @@ C:\wamp64\www\webslides\WebSlides\obj\Debug\WebSlides.TrustInfo.xml
 C:\wamp64\www\webslides\WebSlides\obj\Debug\WebSlides.exe.manifest
 C:\wamp64\www\webslides\WebSlides\obj\Debug\WebSlides.application
 C:\wamp64\www\webslides\WebSlides\obj\Debug\WebSlides.exe
+C:\wamp64\www\webslides\WebSlides\obj\Debug\WebSlides.SetupFrm.resources
