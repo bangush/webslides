@@ -63,7 +63,7 @@ namespace WebSlides
             {
                 // connexion internet ok
                 webBrowser.Visible = true;
-                webBrowser.Navigate("http://webslides.chiwawaweb.com");
+                webBrowser.Navigate("http://webslides.chiwawaweb.com/hifi");
             }
             else
             {

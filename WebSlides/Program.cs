@@ -75,7 +75,7 @@ namespace WebSlides
 
 
                 //MessageBox.Show("Le fichier a bien été créé dans l'emplacement spécifié!", "ok", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                /*file.Write("http://webslides.chiwawaweb.com");
+                /*file.Write("http://webslides.chiwawaweb.com/hifi");
                 file.Close();*/
 
                 // fermeture de l'application
