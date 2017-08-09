@@ -1,0 +1,1 @@
+C:\wamp64\www\webslides\client\WebSlides\WebSlides\bin\Debug\WebSlides.exe.config
