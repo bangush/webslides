@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WebSlides.exe" size="157120">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WebSlides.exe" size="157632">
       <assemblyIdentity name="WebSlides" version="1.0.0.6" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3Ng3xSCDcSDkYFKcIGidUrawRc29A/nebPLBxpjO0j0=</dsig:DigestValue>
+        <dsig:DigestValue>oOAbqP1brWenWbX/nJ7McZggEyVmKcoC7o+a61XDqUY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

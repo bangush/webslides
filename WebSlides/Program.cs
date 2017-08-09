@@ -20,6 +20,36 @@ namespace WebSlides
         [STAThread]
         static void Main()
         {
+            
+            /* 
+             * - Vérifie si fichier slides.txt existe déjà ou pas
+             * - Efface le répertoire si changement de fichier slides.txt
+             * - Charge les fichiers sur le serveur
+             * - Si fichier slides.txt idem, on vérifie que les slides existent et on lance le diaporama
+             * - Vérification si la connexion internet existe
+             * - Vérification toutes les 5 minutes que les slides n'ont pas changé
+             */
+            
+            // lit le fichier slides.txt distant
+            var result = string.Empty;
+            var result2 = string.Empty;
+            using (var webClient = new System.Net.WebClient())
+            {
+                result = webClient.DownloadString("http://webslides.chiwawaweb.com/hifi/slides/slides.txt");
+                File.WriteAllText(@"slides\slidesLocal.txt", result);
+
+
+            }
+
+            using (var webClient = new System.Net.WebClient())
+            {
+                webClient.DownloadFile("http://webslides.chiwawaweb.com/hifi/slides/slide_1.jpg", @"slides\slidesLocal.jpg");
+            }
+
+            
+
+
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
