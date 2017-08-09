@@ -13,7 +13,6 @@ namespace WebSlides
 
         // 
         public static string action;
-        
 
         /// <summary>
         /// The main entry point for the application.
@@ -38,7 +37,6 @@ namespace WebSlides
             {
                 string dateActuelle = System.DateTime.Now.ToShortDateString();
                 string anneeActuelle = dateActuelle.Substring(6, 4);
-
             
                 MessageBox.Show("(c) Copyright "+anneeActuelle+", Frédéric Schwartz ");
                 Application.Exit();

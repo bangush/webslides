@@ -26,18 +26,11 @@ namespace WebSlides
 
         private void MainFrm_Load(object sender, EventArgs e)
         {
-            
-            
-            
-            
-                // vérifie la présence d'une connexion Internet
-                CheckInternetConnection();
+            // vérifie la présence d'une connexion Internet
+            CheckInternetConnection();
 
-                // supprime le curseur
-                Cursor.Hide();
-            
-
-
+            // supprime le curseur
+            Cursor.Hide();
         }
 
         private void MainFrm_KeyUp(object sender, KeyEventArgs e)
