@@ -11,6 +11,7 @@ using System.Runtime;
 using System.Runtime.InteropServices;
 using System.IO.Compression;
 using System.IO;
+using System.Configuration;
 
 namespace WebSlides
 {
@@ -19,6 +20,7 @@ namespace WebSlides
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+
 
         [DllImport("wininet.dll")]
         private extern static bool InternetGetConnectedState(out int Description, int ReservedValue);
@@ -38,14 +40,15 @@ namespace WebSlides
             }
         }
 
-        private static string CheckSlidesTxt(string url)
+        private static string CheckRemoteSlidesTxt()
         {
+            string slidesTxtURL = ConfigurationManager.AppSettings["slidesURL"]+ ConfigurationManager.AppSettings["slidesPath"]+"slides.txt";
             var slideExist = string.Empty;
             using (var webClient = new System.Net.WebClient())
             {
                 try
                 {
-                    slideExist = webClient.DownloadString(url);
+                    slideExist = webClient.DownloadString(slidesTxtURL);
                     return slideExist;
                 }
                 catch
@@ -56,9 +59,27 @@ namespace WebSlides
             
         }
 
-        private static bool CheckSlidesPicture(string url)
+        private static string CheckLocalSlidesTxt()
         {
-            return true;
+            return null;
+        }
+
+        private static bool CheckSlidesPicture(int imgNumber)
+        {
+            string imgFileURL = ConfigurationManager.AppSettings["slidesURL"] + ConfigurationManager.AppSettings["slidesPath"] + "slide_"+imgNumber+".jpg";
+            var imgExist = string.Empty;
+            using (var webClient = new System.Net.WebClient())
+            {
+                try
+                {
+                    imgExist = webClient.DownloadString(imgFileURL); // a modifier !!!!
+                    return true; 
+                }
+                catch
+                {
+                    return false;
+                }
+            }
         }
 
 
@@ -72,29 +93,84 @@ namespace WebSlides
             {
                 Console.Write("OK \n");
                 // vérifie si le fichier slides.txt existe
-                if (CheckSlidesTxt("http://webslides.chiwawaweb.com/hifi/slides/slides.txt")!=null)
+                if (CheckRemoteSlidesTxt()!=null)
                 {
-                    Console.Write("Contenu du fichier slides.txt : " + CheckSlidesTxt() + " \n");
+                    // fichier existant
+                    Console.Write("Contenu du fichier slides.txt : " + CheckRemoteSlidesTxt()+" \n");
+
+                    // CheckSlidesTxt -> contenu du fichier slides.txt
+                    // vérifie le fichier contient le nombre de slides
+
+                    // vérifie si le fichier local existe
+                    /*
+                     * 
+                    *CheckLocalSlidesTxt();
+                    * 
+                    */
+
+                    if (File.Exists(ConfigurationManager.AppSettings["slidesPath"]+"slides.txt"))
+                    {
+                        // Le fichier existe en local
+                        Console.Write("slides.txt existe en local \n");
+
+                        // On le compare au fichier distant
+
+                    }
+                    else
+                    {
+                        // Le fichier n'existe pas en local
+                        Console.Write("slides.txt n'existe pas en local \n");
+
+                        // On le crée
+                    }
+
+                    try
+                    {
+                        int nbSlidesRemote = Int32.Parse(CheckRemoteSlidesTxt().Substring(0, CheckRemoteSlidesTxt().IndexOf(";")));
+                        Console.Write("Nombre de slides indiqués dans le fichier slides.txt : " + nbSlidesRemote + "\n");
+
+                        // compte combien de fichier 'slide_xxx.jpg' en local (idem slidesPath)
+                        // compte de 001 à 100
+                        for (int j = 1; j < 101; ++j)
+                        {
+                            if (CheckSlidesPicture(j)==true)
+                            {
+                                Console.Write(j + " OK" + "\n");
+                            }
+                            else
+                            {
+                                Console.Write(j + " not ok" + "\n");
+                            }
+                            //string slidesFileName = "slide_" + j.ToString("000") + ".jpg";
+                            //Console.Write(slidesFileName + "\n");
+                        }
+                    }
+                    catch
+                    {
+                        // fichier slides.txt invalide
+                        Console.Write("Fichier slides.txt invalide ! \n");
+                    }
                 }
                 else
                 {
-                    Console.Write("Pas de fichier slides.txt");
+                    // fichier slides.txt introuvable
+                    Console.Write("Pas de fichier slides.txt \n");
                 }
             }
             else
             {
+                // pas de connexion internet
                 Console.Write("Pas de connexion ! \n");
             }
 
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("\nPressez ENTER pour terminer... \n");
+            Console.ResetColor();
             Console.ReadLine();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-
-
         }
-
-        
     }
 }

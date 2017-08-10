@@ -1,0 +1,4 @@
+Paramètres requis :
+
+- les fichiers images slides doivent être de la forme slide_xxx.jpg
+- maximum de fichiers images slides : 100
