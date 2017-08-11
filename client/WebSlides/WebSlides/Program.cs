@@ -42,14 +42,14 @@ namespace WebSlides
 
         private static string CheckRemoteSlidesTxt()
         {
-            string slidesTxtURL = ConfigurationManager.AppSettings["slidesURL"]+ ConfigurationManager.AppSettings["slidesPath"]+"slides.txt";
-            var slideExist = string.Empty;
+            string slidesTxtRemoteURL = ConfigurationManager.AppSettings["slidesURL"]+ ConfigurationManager.AppSettings["slidesPath"]+"slides.txt";
+            string contentRemoteSlidesTxt;// = string.Empty;
             using (var webClient = new System.Net.WebClient())
             {
                 try
                 {
-                    slideExist = webClient.DownloadString(slidesTxtURL);
-                    return slideExist;
+                    contentRemoteSlidesTxt = webClient.DownloadString(slidesTxtRemoteURL);
+                    return contentRemoteSlidesTxt;
                 }
                 catch
                 {
@@ -61,12 +61,22 @@ namespace WebSlides
 
         private static string CheckLocalSlidesTxt()
         {
-            return null;
+            string slidesTxtLocalPath = ConfigurationManager.AppSettings["slidesPath"] + "slides.txt";
+            if (File.Exists(slidesTxtLocalPath) == true)
+            {
+                string contentLocalSlidesTxt = File.ReadAllText(slidesTxtLocalPath);
+                return contentLocalSlidesTxt;
+            }
+            else
+            {
+                return null;
+            }
+            
         }
 
         private static bool CheckSlidesPicture(int imgNumber)
         {
-            string imgFileURL = ConfigurationManager.AppSettings["slidesURL"] + ConfigurationManager.AppSettings["slidesPath"] + "slide_"+imgNumber+".jpg";
+            string imgFileURL = ConfigurationManager.AppSettings["slidesURL"] + ConfigurationManager.AppSettings["slidesPath"] + "slide_" + imgNumber.ToString("000") +".jpg";
             var imgExist = string.Empty;
             using (var webClient = new System.Net.WebClient())
             {
@@ -96,7 +106,7 @@ namespace WebSlides
                 if (CheckRemoteSlidesTxt()!=null)
                 {
                     // fichier existant
-                    Console.Write("Contenu du fichier slides.txt : " + CheckRemoteSlidesTxt()+" \n");
+                    Console.Write("Contenu du fichier slides.txt distant : " + CheckRemoteSlidesTxt()+" \n");
 
                     // CheckSlidesTxt -> contenu du fichier slides.txt
                     // vérifie le fichier contient le nombre de slides
@@ -108,13 +118,29 @@ namespace WebSlides
                     * 
                     */
 
+                    if (CheckLocalSlidesTxt()==CheckRemoteSlidesTxt())
+                    {
+                        // fichier slides.txt identique local/distant
+                        Console.Write("\nFichiers slides.txt identiques\n");
+                    }
+                    else
+                    {
+                        // fichier slides.txt identique local/distant
+                        Console.Write("\nFichiers slides.txt différents\n");
+                        System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["slidesPath"]);
+                        File.WriteAllText(@"slides/slides.txt", CheckRemoteSlidesTxt());
+                        Console.Write("Fichier slides.txt créé \n");
+                    }
+
+                    /*
                     if (File.Exists(ConfigurationManager.AppSettings["slidesPath"]+"slides.txt"))
                     {
                         // Le fichier existe en local
                         Console.Write("slides.txt existe en local \n");
 
                         // On le compare au fichier distant
-
+                        Console.Write("Contenu du fichier slides.txt LOCAL : "+CheckLocalSlidesTxt()+"\n");
+                        Console.Write("Contenu du fichier slides.txt DISTANT : " + CheckRemoteSlidesTxt()+"\n");
                     }
                     else
                     {
@@ -122,16 +148,19 @@ namespace WebSlides
                         Console.Write("slides.txt n'existe pas en local \n");
 
                         // On le crée
-                    }
+                        System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["slidesPath"]);
+                        File.WriteAllText(@"slides/slides.txt", CheckRemoteSlidesTxt());
+                        Console.Write("Fichier slides.txt créé \n");
+                    }*/
 
                     try
                     {
-                        int nbSlidesRemote = Int32.Parse(CheckRemoteSlidesTxt().Substring(0, CheckRemoteSlidesTxt().IndexOf(";")));
-                        Console.Write("Nombre de slides indiqués dans le fichier slides.txt : " + nbSlidesRemote + "\n");
+                        //int nbSlidesRemote = Int32.Parse(CheckRemoteSlidesTxt().Substring(0, CheckRemoteSlidesTxt().IndexOf(";")));
+                        //Console.Write("Nombre de slides indiqués dans le fichier slides.txt : " + nbSlidesRemote + "\n");
 
                         // compte combien de fichier 'slide_xxx.jpg' en local (idem slidesPath)
-                        // compte de 001 à 100
-                        for (int j = 1; j < 101; ++j)
+                        // compte de 1 à xxx
+                        for (int j = 1; j < Int32.Parse(ConfigurationManager.AppSettings["nbMaxSlides"])+1; ++j)
                         {
                             if (CheckSlidesPicture(j)==true)
                             {
