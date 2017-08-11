@@ -82,7 +82,7 @@ namespace WebSlides
             {
                 try
                 {
-                    imgExist = webClient.DownloadString(imgFileURL); // a modifier !!!!
+                    webClient.DownloadFile(imgFileURL, @"slides\slide_"+imgNumber.ToString("000")+".jpg"); // a modifier !!!!
                     return true; 
                 }
                 catch
@@ -107,16 +107,7 @@ namespace WebSlides
                 {
                     // fichier existant
                     Console.Write("Contenu du fichier slides.txt distant : " + CheckRemoteSlidesTxt()+" \n");
-
-                    // CheckSlidesTxt -> contenu du fichier slides.txt
-                    // vérifie le fichier contient le nombre de slides
-
-                    // vérifie si le fichier local existe
-                    /*
-                     * 
-                    *CheckLocalSlidesTxt();
-                    * 
-                    */
+                    Console.Write("Contenu du fichier slides.txt local   : " + CheckLocalSlidesTxt() + " \n");
 
                     if (CheckLocalSlidesTxt()==CheckRemoteSlidesTxt())
                     {
@@ -125,59 +116,50 @@ namespace WebSlides
                     }
                     else
                     {
-                        // fichier slides.txt identique local/distant
+                        // fichier slides.txt différent local/distant
                         Console.Write("\nFichiers slides.txt différents\n");
-                        System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["slidesPath"]);
-                        File.WriteAllText(@"slides/slides.txt", CheckRemoteSlidesTxt());
-                        Console.Write("Fichier slides.txt créé \n");
-                    }
 
-                    /*
-                    if (File.Exists(ConfigurationManager.AppSettings["slidesPath"]+"slides.txt"))
-                    {
-                        // Le fichier existe en local
-                        Console.Write("slides.txt existe en local \n");
-
-                        // On le compare au fichier distant
-                        Console.Write("Contenu du fichier slides.txt LOCAL : "+CheckLocalSlidesTxt()+"\n");
-                        Console.Write("Contenu du fichier slides.txt DISTANT : " + CheckRemoteSlidesTxt()+"\n");
-                    }
-                    else
-                    {
-                        // Le fichier n'existe pas en local
-                        Console.Write("slides.txt n'existe pas en local \n");
-
-                        // On le crée
-                        System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["slidesPath"]);
-                        File.WriteAllText(@"slides/slides.txt", CheckRemoteSlidesTxt());
-                        Console.Write("Fichier slides.txt créé \n");
-                    }*/
-
-                    try
-                    {
-                        //int nbSlidesRemote = Int32.Parse(CheckRemoteSlidesTxt().Substring(0, CheckRemoteSlidesTxt().IndexOf(";")));
-                        //Console.Write("Nombre de slides indiqués dans le fichier slides.txt : " + nbSlidesRemote + "\n");
-
-                        // compte combien de fichier 'slide_xxx.jpg' en local (idem slidesPath)
-                        // compte de 1 à xxx
-                        for (int j = 1; j < Int32.Parse(ConfigurationManager.AppSettings["nbMaxSlides"])+1; ++j)
+                        // effacement du dossier
+                        try
                         {
-                            if (CheckSlidesPicture(j)==true)
-                            {
-                                Console.Write(j + " OK" + "\n");
-                            }
-                            else
-                            {
-                                Console.Write(j + " not ok" + "\n");
-                            }
-                            //string slidesFileName = "slide_" + j.ToString("000") + ".jpg";
-                            //Console.Write(slidesFileName + "\n");
+                            Directory.Delete(@ConfigurationManager.AppSettings["slidesPath"], true);
                         }
-                    }
-                    catch
-                    {
-                        // fichier slides.txt invalide
-                        Console.Write("Fichier slides.txt invalide ! \n");
+                        catch (IOException e)
+                        {
+                            MessageBox.Show(e.Message);
+                        }
+                        
+
+                        // création du dossier
+                        Directory.CreateDirectory(ConfigurationManager.AppSettings["slidesPath"]);
+                        File.WriteAllText(@ConfigurationManager.AppSettings["slidesPath"] +"/slides.txt", CheckRemoteSlidesTxt());
+                        Console.Write("Fichier slides.txt créé/remplacé \n");
+
+                        // importation des slides
+                        try
+                        {
+                            // compte combien de fichier 'slide_xxx.jpg' importés en local
+                            // compte de 1 à nbMaxSlides
+                            int nbLocalSlides = 0;
+                            for (int slideNumber = 1; slideNumber < Int32.Parse(ConfigurationManager.AppSettings["nbMaxSlides"]) + 1; ++slideNumber)
+                            {
+                                if (CheckSlidesPicture(slideNumber) == true)
+                                {
+                                    Console.Write(".");
+                                    nbLocalSlides++;
+                                }
+                                else
+                                {
+                                    Console.Write("x");
+                                }
+                            }
+                            Console.Write("\nNombre de slides importés local : " + nbLocalSlides + " \n");
+                        }
+                        catch
+                        {
+                            // fichier slides.txt invalide
+                            Console.Write("Erreur importation ! \n");
+                        }
                     }
                 }
                 else
@@ -193,13 +175,15 @@ namespace WebSlides
             }
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("\nPressez ENTER pour terminer... \n");
+            Console.Write("\n\nPressez ENTER pour terminer... \n");
             Console.ResetColor();
             Console.ReadLine();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
+
+            // lancement du diaporama
+            Application.Run(new Slides());
         }
     }
 }

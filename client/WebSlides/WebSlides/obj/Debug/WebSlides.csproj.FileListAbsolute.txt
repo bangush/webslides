@@ -6,3 +6,4 @@ C:\wamp64\www\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.Propertie
 C:\wamp64\www\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.csproj.GenerateResource.Cache
 C:\wamp64\www\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.exe
 C:\wamp64\www\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.pdb
+C:\wamp64\www\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.Slides.resources
