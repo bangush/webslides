@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using System.IO.Compression;
 using System.IO;
 using System.Configuration;
+using System.Reflection;
 
 namespace WebSlides
 {
@@ -19,8 +20,9 @@ namespace WebSlides
     {
         const string slidesURL = "http://webslides.chiwawaweb.com/hifi/";
         const string slidesPath = "slides/";
+        static String slidesLocalPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6) + @"\slides\";
         const int nbMaxSlides = 50;
-
+        
         [DllImport("wininet.dll")]
         private extern static bool InternetGetConnectedState(out int Description, int ReservedValue);
 
@@ -30,7 +32,7 @@ namespace WebSlides
             if (InternetGetConnectedState(out Desc, 0))
             {
                 // connexion internet OK
-                MessageBox.Show("connexion internet ok");
+                //MessageBox.Show("connexion internet ok");
                 return true;
             }
             else
@@ -60,7 +62,7 @@ namespace WebSlides
 
         private static string CheckLocalSlidesTxt()
         {
-            string slidesTxtLocalPath = slidesPath + "slides.txt";
+            string slidesTxtLocalPath = slidesLocalPath + "slides.txt";
             if (File.Exists(slidesTxtLocalPath) == true)
             {
                 string contentLocalSlidesTxt = File.ReadAllText(slidesTxtLocalPath);
@@ -80,7 +82,7 @@ namespace WebSlides
             {
                 try
                 {
-                    webClient.DownloadFile(imgFileURL, slidesPath + "slide_" + imgNumber.ToString("000") + ".jpg");
+                    webClient.DownloadFile(imgFileURL, slidesLocalPath + "slide_" + imgNumber.ToString("000") + ".jpg");
                     return true;
                 }
                 catch
@@ -97,7 +99,8 @@ namespace WebSlides
 
         private void Slides_Load(object sender, EventArgs e)
         {
-            Cursor.Hide();
+            //Cursor.Hide();
+            
 
             if (CheckInternetConnection() == true)
             {
@@ -121,7 +124,7 @@ namespace WebSlides
                         // effacement du dossier
                         try
                         {
-                            Directory.Delete(slidesPath, true);
+                            Directory.Delete(slidesLocalPath, true);
                         }
                         catch 
                         {
@@ -129,9 +132,9 @@ namespace WebSlides
                         }
 
                         // création du dossier
-                        Directory.CreateDirectory(slidesPath);
+                        Directory.CreateDirectory(slidesLocalPath);
 
-                        File.WriteAllText(slidesPath + "slides.txt", CheckRemoteSlidesTxt());
+                        File.WriteAllText(slidesLocalPath + "slides.txt", CheckRemoteSlidesTxt());
 
 
                         Console.Write("Fichier slides.txt créé/remplacé \n");

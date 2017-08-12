@@ -41,7 +41,7 @@ namespace WebSlides
                 Application.Exit();
             }
 
-            MessageBox.Show("Action : "+action);
+            //MessageBox.Show("Action : "+action);
 
             // lancement du diaporama
             if (action=="/s"||action=="/S")
