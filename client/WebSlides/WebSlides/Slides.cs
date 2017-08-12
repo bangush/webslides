@@ -13,6 +13,7 @@ using System.IO.Compression;
 using System.IO;
 using System.Configuration;
 using System.Reflection;
+using System.Threading;
 
 namespace WebSlides
 {
@@ -99,7 +100,7 @@ namespace WebSlides
 
         private void Slides_Load(object sender, EventArgs e)
         {
-            //Cursor.Hide();
+            Cursor.Hide();
             
 
             if (CheckInternetConnection() == true)
@@ -183,7 +184,16 @@ namespace WebSlides
             }
 
             progressBar.Visible = false;
-            
+
+            // démarrage du diaporama
+            // affiche le premier fichier
+            //Image myimage = new Bitmap(@"slides\slide_001.jpg");
+            //this.BackgroundImage = myimage;
+            for (int i = 1; i < 15; i++)
+            {
+                showSlide(i);
+                MessageBox.Show("+");
+            }
         }
 
         private void Slides_KeyPress(object sender, KeyPressEventArgs e)
@@ -194,6 +204,17 @@ namespace WebSlides
         private void Slides_MouseClick(object sender, MouseEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void showSlide(int imgNumber)
+        {
+            Image slide = new Bitmap(slidesLocalPath + "slide_"+imgNumber.ToString("000")+".jpg");
+            this.BackgroundImage = slide;
         }
     }
 }
