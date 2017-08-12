@@ -29,7 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Slides));
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(13, 13);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(100, 23);
+            this.progressBar.TabIndex = 0;
             // 
             // Slides
             // 
@@ -39,6 +47,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(776, 505);
+            this.Controls.Add(this.progressBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Slides";
             this.ShowInTaskbar = false;
@@ -53,5 +62,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }
