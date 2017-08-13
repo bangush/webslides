@@ -32,19 +32,35 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Slides));
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.internetConnection = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(13, 13);
+            this.progressBar.Location = new System.Drawing.Point(12, 12);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(100, 23);
+            this.progressBar.Size = new System.Drawing.Size(100, 10);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar.TabIndex = 0;
             // 
             // timer
             // 
+            this.timer.Enabled = true;
             this.timer.Interval = 5000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // internetConnection
+            // 
+            this.internetConnection.BackColor = System.Drawing.Color.GreenYellow;
+            this.internetConnection.FlatAppearance.BorderSize = 0;
+            this.internetConnection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.internetConnection.Location = new System.Drawing.Point(12, 12);
+            this.internetConnection.Name = "internetConnection";
+            this.internetConnection.Size = new System.Drawing.Size(10, 10);
+            this.internetConnection.TabIndex = 1;
+            this.internetConnection.TabStop = false;
+            this.internetConnection.UseVisualStyleBackColor = false;
+            this.internetConnection.Visible = false;
             // 
             // Slides
             // 
@@ -54,6 +70,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(776, 505);
+            this.Controls.Add(this.internetConnection);
             this.Controls.Add(this.progressBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Slides";
@@ -72,5 +89,6 @@
 
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Button internetConnection;
     }
 }

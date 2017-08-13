@@ -22,8 +22,10 @@ namespace WebSlides
         const string slidesURL = "http://webslides.chiwawaweb.com/hifi/";
         const string slidesPath = "slides/";
         static String slidesLocalPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6) + @"\slides\";
-        const int nbMaxSlides = 50;
-        
+        const int nbMaxSlides = 100;
+
+        static int imgNumber = 1;
+
         [DllImport("wininet.dll")]
         private extern static bool InternetGetConnectedState(out int Description, int ReservedValue);
 
@@ -46,7 +48,7 @@ namespace WebSlides
         private string CheckRemoteSlidesTxt()
         {
             string slidesTxtRemoteURL = slidesURL + slidesPath + "slides.txt";
-            string contentRemoteSlidesTxt;// = string.Empty;
+            string contentRemoteSlidesTxt;
             using (var webClient = new System.Net.WebClient())
             {
                 try
@@ -93,6 +95,31 @@ namespace WebSlides
             }
         }
 
+        // compte combien de slides sont présents dans le dossier slideLocalPath
+        private int compteNbSlidesLocal()
+        {
+
+            try
+            {
+                var files = from file in Directory.EnumerateFiles(slidesLocalPath, "slide_*.jpg", SearchOption.AllDirectories)
+                            select new
+                            {
+                                File = file,
+                            };
+                // renvoie le nombre de slides trouvés
+                return files.Count();
+            }
+            catch (UnauthorizedAccessException UAEx)
+            {
+                Console.WriteLine(UAEx.Message);
+            }
+            catch (PathTooLongException PathEx)
+            {
+                Console.WriteLine(PathEx.Message);
+            }
+            return 0;
+        }
+
         public Slides()
         {
             InitializeComponent();
@@ -102,7 +129,6 @@ namespace WebSlides
         {
             Cursor.Hide();
             
-
             if (CheckInternetConnection() == true)
             {
                 // vérifie si le fichier slides.txt existe
@@ -110,17 +136,17 @@ namespace WebSlides
                 {
                     // fichier existant
                    
-                    Console.Write("Contenu du fichier slides.txt local   : " + CheckLocalSlidesTxt() + " \n");
+                    //Console.Write("Contenu du fichier slides.txt local   : " + CheckLocalSlidesTxt() + " \n");
 
                     if (CheckLocalSlidesTxt() == CheckRemoteSlidesTxt())
                     {
                         // fichier slides.txt identique local/distant
-                        Console.Write("\nFichiers slides.txt identiques\n");
+                        //Console.Write("\nFichiers slides.txt identiques\n");
                     }
                     else
                     {
                         // fichier slides.txt différent local/distant
-                        Console.Write("\nFichiers slides.txt différents\n");
+                        //Console.Write("\nFichiers slides.txt différents\n");
 
                         // effacement du dossier
                         try
@@ -137,8 +163,7 @@ namespace WebSlides
 
                         File.WriteAllText(slidesLocalPath + "slides.txt", CheckRemoteSlidesTxt());
 
-
-                        Console.Write("Fichier slides.txt créé/remplacé \n");
+                        //Console.Write("Fichier slides.txt créé/remplacé \n");
 
                         // importation des slides
                         try
@@ -152,48 +177,41 @@ namespace WebSlides
                             {
                                 if (CheckSlidesPicture(slideNumber) == true)
                                 {
-                                    Console.Write(".");
+                                    //Console.Write(".");
                                     nbLocalSlides++;
                                 }
                                 else
                                 {
-                                    Console.Write("x");
+                                    //Console.Write("x");
                                 }
                                 progressBar.Value += Int32.Parse(coeffProgressBar.ToString());
                             }
-                            Console.Write("\nNombre de slides importés local : " + nbLocalSlides + " \n");
+                            //Console.Write("\nNombre de slides importés local : " + nbLocalSlides + " \n");
                             
                         }
                         catch
                         {
                             // fichier slides.txt invalide
-                            Console.Write("Erreur importation ! \n");
+                            //Console.Write("Erreur importation ! \n");
                         }
                     }
                 }
                 else
                 {
                     // fichier slides.txt introuvable
-                    Console.Write("Pas de fichier slides.txt \n");
+                    //Console.Write("Pas de fichier slides.txt \n");
                 }
             }
             else
             {
                 // pas de connexion internet
-                Console.Write("Pas de connexion ! \n");
+                //Console.Write("Pas de connexion ! \n");
+                this.internetConnection.Visible = true;
             }
-
+            // barre de progression invisible
             progressBar.Visible = false;
 
-            // démarrage du diaporama
-            // affiche le premier fichier
-            //Image myimage = new Bitmap(@"slides\slide_001.jpg");
-            //this.BackgroundImage = myimage;
-            for (int i = 1; i < 15; i++)
-            {
-                showSlide(i);
-                MessageBox.Show("+");
-            }
+            showSlide();
         }
 
         private void Slides_KeyPress(object sender, KeyPressEventArgs e)
@@ -208,13 +226,24 @@ namespace WebSlides
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            
+            showSlide();
         }
 
-        private void showSlide(int imgNumber)
+        private void showSlide()
         {
-            Image slide = new Bitmap(slidesLocalPath + "slide_"+imgNumber.ToString("000")+".jpg");
-            this.BackgroundImage = slide;
+            if (imgNumber > compteNbSlidesLocal()) { imgNumber = 1; }
+            string slideCompletePath = slidesLocalPath + "slide_" + imgNumber.ToString("000") + ".jpg";
+            if (File.Exists(slideCompletePath))
+            {
+                Image slide = new Bitmap(slideCompletePath);
+                this.BackgroundImage = slide;
+                imgNumber++;
+            }
+            else
+            {
+                imgNumber++;
+            }
+            
         }
     }
 }
