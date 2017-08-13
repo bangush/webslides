@@ -22,7 +22,7 @@ namespace WebSlides
         const string slidesURL = "http://webslides.chiwawaweb.com/hifi/";
         const string slidesPath = "slides/";
         static String slidesLocalPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6) + @"\slides\";
-        const int nbMaxSlides = 100;
+        const int nbMaxImportSlides = 100;
 
         static int imgNumber = 1;
 
@@ -77,7 +77,8 @@ namespace WebSlides
             }
         }
 
-        private static bool CheckSlidesPicture(int imgNumber)
+        // importation des slides distants
+        private static void ImportRemoteSlides(int imgNumber)
         {
             string imgFileURL = slidesURL + slidesPath + "slide_" + imgNumber.ToString("000") + ".jpg";
             var imgExist = string.Empty;
@@ -86,11 +87,10 @@ namespace WebSlides
                 try
                 {
                     webClient.DownloadFile(imgFileURL, slidesLocalPath + "slide_" + imgNumber.ToString("000") + ".jpg");
-                    return true;
                 }
                 catch
                 {
-                    return false;
+                    // erreur, on ne fait rien...
                 }
             }
         }
@@ -109,15 +109,84 @@ namespace WebSlides
                 // renvoie le nombre de slides trouvés
                 return files.Count();
             }
-            catch (UnauthorizedAccessException UAEx)
+            catch
             {
-                Console.WriteLine(UAEx.Message);
+                return 0;
             }
-            catch (PathTooLongException PathEx)
+        }
+
+        private void runSlideShow()
+        {
+            timer.Enabled = false;
+
+            // vérifie la connexion internet
+            if (CheckInternetConnection() == true)
             {
-                Console.WriteLine(PathEx.Message);
+                // indicateur connexin internet
+                this.internetConnection.Visible = false;
+
+                // vérifie si le fichier slides.txt existe
+                if (CheckRemoteSlidesTxt() != null)
+                {
+                    // fichier existant
+                    if (CheckLocalSlidesTxt() == CheckRemoteSlidesTxt())
+                    {
+                        // fichier slides.txt identique local/distant
+                    }
+                    else
+                    {
+                        // fichier slides.txt différent local/distant
+                        // effacement du dossier
+                        try
+                        {
+                            Directory.Delete(slidesLocalPath, true);
+                        }
+                        catch
+                        {
+                            // si erreur, on ne fait rien
+                        }
+
+                        // création du dossier
+                        Directory.CreateDirectory(slidesLocalPath);
+
+                        // création du fichier
+                        File.WriteAllText(slidesLocalPath + "slides.txt", CheckRemoteSlidesTxt());
+
+                        // importation des slides
+                        int coeffProgressBar = 100 / nbMaxImportSlides;
+                        progressBar.Visible = true;
+
+                        // désactive de timer_checkup
+                        timer_checkup.Enabled = false;
+
+                        for (int slideNumber = 1; slideNumber < nbMaxImportSlides + 1; ++slideNumber)
+                        {
+                            // importation de chaque slide
+                            ImportRemoteSlides(slideNumber);
+                            // mise à jour de la barre de progression
+                            progressBar.Value += coeffProgressBar;
+                        }
+
+                        // réactive de timer_checkup
+                        timer_checkup.Enabled = true;
+                    }
+                }
+                else
+                {
+                    // fichier slides.txt distant introuvable
+                }
             }
-            return 0;
+            else
+            {
+                // pas de connexion internet
+                this.internetConnection.Visible = true;
+            }
+            // barre de progression invisible
+            progressBar.Visible = false;
+
+            // lance le premier slide
+            showSlide();
+            timer.Enabled = true;
         }
 
         public Slides()
@@ -127,91 +196,11 @@ namespace WebSlides
 
         private void Slides_Load(object sender, EventArgs e)
         {
+            // masque le curseur
             Cursor.Hide();
-            
-            if (CheckInternetConnection() == true)
-            {
-                // vérifie si le fichier slides.txt existe
-                if (CheckRemoteSlidesTxt() != null)
-                {
-                    // fichier existant
-                   
-                    //Console.Write("Contenu du fichier slides.txt local   : " + CheckLocalSlidesTxt() + " \n");
 
-                    if (CheckLocalSlidesTxt() == CheckRemoteSlidesTxt())
-                    {
-                        // fichier slides.txt identique local/distant
-                        //Console.Write("\nFichiers slides.txt identiques\n");
-                    }
-                    else
-                    {
-                        // fichier slides.txt différent local/distant
-                        //Console.Write("\nFichiers slides.txt différents\n");
-
-                        // effacement du dossier
-                        try
-                        {
-                            Directory.Delete(slidesLocalPath, true);
-                        }
-                        catch 
-                        {
-                           // MessageBox.Show("erreur");
-                        }
-
-                        // création du dossier
-                        Directory.CreateDirectory(slidesLocalPath);
-
-                        File.WriteAllText(slidesLocalPath + "slides.txt", CheckRemoteSlidesTxt());
-
-                        //Console.Write("Fichier slides.txt créé/remplacé \n");
-
-                        // importation des slides
-                        try
-                        {
-                            // compte combien de fichier 'slide_xxx.jpg' importés en local
-                            // compte de 1 à nbMaxSlides
-                            int nbLocalSlides = 0;
-                            double coeffProgressBar = 100 / nbMaxSlides;
-                            
-                            for (int slideNumber = 1; slideNumber < nbMaxSlides+1; ++slideNumber)
-                            {
-                                if (CheckSlidesPicture(slideNumber) == true)
-                                {
-                                    //Console.Write(".");
-                                    nbLocalSlides++;
-                                }
-                                else
-                                {
-                                    //Console.Write("x");
-                                }
-                                progressBar.Value += Int32.Parse(coeffProgressBar.ToString());
-                            }
-                            //Console.Write("\nNombre de slides importés local : " + nbLocalSlides + " \n");
-                            
-                        }
-                        catch
-                        {
-                            // fichier slides.txt invalide
-                            //Console.Write("Erreur importation ! \n");
-                        }
-                    }
-                }
-                else
-                {
-                    // fichier slides.txt introuvable
-                    //Console.Write("Pas de fichier slides.txt \n");
-                }
-            }
-            else
-            {
-                // pas de connexion internet
-                //Console.Write("Pas de connexion ! \n");
-                this.internetConnection.Visible = true;
-            }
-            // barre de progression invisible
-            progressBar.Visible = false;
-
-            showSlide();
+            // lance le processus
+            runSlideShow();
         }
 
         private void Slides_KeyPress(object sender, KeyPressEventArgs e)
@@ -244,6 +233,11 @@ namespace WebSlides
                 imgNumber++;
             }
             
+        }
+
+        private void timer_checkup_Tick(object sender, EventArgs e)
+        {
+            runSlideShow();
         }
     }
 }

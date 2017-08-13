@@ -44,9 +44,22 @@ namespace WebSlides
             //MessageBox.Show("Action : "+action);
 
             // lancement du diaporama
-            if (action=="/s"||action=="/S")
+            if (action=="/s" || action=="/S")
             {
                 Application.Run(new Slides());
+            }
+            else if (action == "/c")
+            {
+                // page de configuration
+                MessageBox.Show(
+                    "Cet écran de veille n'est pas configurable actuellement.",
+                    "WebSlides",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Asterisk);
+            }
+            else
+            {
+                Application.Exit();
             }
             
         }

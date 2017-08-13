@@ -33,6 +33,7 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.internetConnection = new System.Windows.Forms.Button();
+            this.timer_checkup = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // progressBar
@@ -42,16 +43,16 @@
             this.progressBar.Size = new System.Drawing.Size(100, 10);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar.TabIndex = 0;
+            this.progressBar.Visible = false;
             // 
             // timer
             // 
-            this.timer.Enabled = true;
             this.timer.Interval = 5000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // internetConnection
             // 
-            this.internetConnection.BackColor = System.Drawing.Color.GreenYellow;
+            this.internetConnection.BackColor = System.Drawing.Color.Gray;
             this.internetConnection.FlatAppearance.BorderSize = 0;
             this.internetConnection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.internetConnection.Location = new System.Drawing.Point(12, 12);
@@ -61,6 +62,12 @@
             this.internetConnection.TabStop = false;
             this.internetConnection.UseVisualStyleBackColor = false;
             this.internetConnection.Visible = false;
+            // 
+            // timer_checkup
+            // 
+            this.timer_checkup.Enabled = true;
+            this.timer_checkup.Interval = 45000;
+            this.timer_checkup.Tick += new System.EventHandler(this.timer_checkup_Tick);
             // 
             // Slides
             // 
@@ -90,5 +97,6 @@
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Button internetConnection;
+        private System.Windows.Forms.Timer timer_checkup;
     }
 }
