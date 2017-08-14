@@ -35,7 +35,6 @@ namespace WebSlides
             if (InternetGetConnectedState(out Desc, 0))
             {
                 // connexion internet OK
-                //MessageBox.Show("connexion internet ok");
                 return true;
             }
             else
@@ -156,9 +155,6 @@ namespace WebSlides
                         int coeffProgressBar = 100 / nbMaxImportSlides;
                         progressBar.Visible = true;
 
-                        // désactive de timer_checkup
-                        timer_checkup.Enabled = false;
-
                         for (int slideNumber = 1; slideNumber < nbMaxImportSlides + 1; ++slideNumber)
                         {
                             // importation de chaque slide
@@ -166,9 +162,6 @@ namespace WebSlides
                             // mise à jour de la barre de progression
                             progressBar.Value += coeffProgressBar;
                         }
-
-                        // réactive de timer_checkup
-                        timer_checkup.Enabled = true;
                     }
                 }
                 else
@@ -232,12 +225,6 @@ namespace WebSlides
             {
                 imgNumber++;
             }
-            
-        }
-
-        private void timer_checkup_Tick(object sender, EventArgs e)
-        {
-            runSlideShow();
         }
     }
 }

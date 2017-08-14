@@ -33,7 +33,6 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.internetConnection = new System.Windows.Forms.Button();
-            this.timer_checkup = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // progressBar
@@ -63,12 +62,6 @@
             this.internetConnection.UseVisualStyleBackColor = false;
             this.internetConnection.Visible = false;
             // 
-            // timer_checkup
-            // 
-            this.timer_checkup.Enabled = true;
-            this.timer_checkup.Interval = 180000;
-            this.timer_checkup.Tick += new System.EventHandler(this.timer_checkup_Tick);
-            // 
             // Slides
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -97,6 +90,5 @@
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Button internetConnection;
-        private System.Windows.Forms.Timer timer_checkup;
     }
 }
