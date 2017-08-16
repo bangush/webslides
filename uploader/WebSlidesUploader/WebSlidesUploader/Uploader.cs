@@ -2,15 +2,18 @@
 using System.Drawing;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Security;
 using System.Windows.Forms;
 
-
 namespace WebSlidesUploader
 {
-    public partial class Form1 : Form
+    public partial class Uploader : Form
     {
-        public Form1()
+
+        static String tmpSlidesPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6) + @"\slides-tmp\";
+
+        public Uploader()
         {
             InitializeComponent();
         }
@@ -25,6 +28,10 @@ namespace WebSlidesUploader
             DialogResult dr = this.openFileDialog1.ShowDialog();
             if (dr == System.Windows.Forms.DialogResult.OK)
             {
+                // copie les fichiers sur le disque dur, dossier slides-tmp
+
+                
+
                 // Read the files
                 foreach (String file in openFileDialog1.FileNames)
                 {
@@ -36,7 +43,7 @@ namespace WebSlidesUploader
                         pb.Height = loadedImage.Height;
                         pb.Width = loadedImage.Width;
                         pb.Image = loadedImage;
-                        flowLayoutPanel1.Controls.Add(pb);
+                        //flowLayoutPanel1.Controls.Add(pb);
                     }
                     catch (SecurityException ex)
                     {
@@ -57,21 +64,17 @@ namespace WebSlidesUploader
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            InitializeOpenFileDialog();
-        }
+
 
         private void InitializeOpenFileDialog()
         {
             // Set the file dialog to filter for graphics files.
             this.openFileDialog1.Filter =
-                "Images (*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|" +
-                "All files (*.*)|*.*";
+                "Images (*.JPG)|*.JPG";
 
             // Allow the user to select multiple images.
             this.openFileDialog1.Multiselect = true;
-            this.openFileDialog1.Title = "My Image Browser";
+            this.openFileDialog1.Title = "Chosissez les images à intégrer";
         }
 
         private void test()
@@ -93,6 +96,53 @@ namespace WebSlidesUploader
 
             reader.Close();
             response.Close();
+        }
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            InitializeOpenFileDialog();
+
+            DirectoryInfo dir = new DirectoryInfo(tmpSlidesPath);
+            FileInfo[] fichiers = dir.GetFiles();
+
+            foreach (FileInfo fichier in fichiers)
+            {
+                listView1.CheckBoxes = true;
+                listView1.Tag = fichier.Name;
+                
+                imageList1.Images.Add(Image.FromFile(tmpSlidesPath+fichier.Name));
+            }
+            listView1.View = View.LargeIcon;
+            imageList1.ImageSize = new Size(100, 60);
+            
+            listView1.LargeImageList = imageList1;
+
+            ListView.CheckedListViewItemCollection checkedItems = listView1.CheckedItems;
+
+            for (int j = 0; j < imageList1.Images.Count; j++)
+            {
+                ListViewItem item = new ListViewItem();
+                item.ImageIndex = j;
+                listView1.Items.Add(item);
+            }
+        }
+
+        private string msgtest = "";
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ListView.CheckedListViewItemCollection checkedItems = listView1.CheckedItems;
+            int compteur = 0;
+            
+            foreach (ListViewItem item in checkedItems)
+            {
+                msgtest += item.Tag.ToString();
+                compteur = compteur + 1;
+            }
+            MessageBox.Show(msgtest);
+
+            listView1.Refresh();
         }
     }
 }
