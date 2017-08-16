@@ -18,6 +18,38 @@ namespace WebSlidesUploader
             InitializeComponent();
         }
 
+        private void Uploader_Load(object sender, EventArgs e)
+        {
+            InitializeOpenFileDialog();
+
+            DirectoryInfo dir = new DirectoryInfo(tmpSlidesPath);
+            FileInfo[] fichiers = dir.GetFiles();
+
+            //DirectoryInfo dir = new DirectoryInfo(@"c:\pics");
+            this.listView1.View = View.LargeIcon;
+            
+            this.imageList1.ImageSize = new Size(100, 100);
+            this.listView1.LargeImageList = this.imageList1;
+            int j = 0;
+            foreach (FileInfo file in dir.GetFiles())
+            {
+                try
+                {
+                    //this.imageList1.Images.Add(Image.FromFile(file.FullName));
+                    imageList1.Images.Add(file.Name, Image.FromFile(file.FullName));
+                    ListViewItem item = new ListViewItem(file.Name);
+                    item.Tag = file.Name;
+                    item.ImageIndex = j;
+                    this.listView1.Items.Add(item);
+                    j++;
+                }
+                catch
+                {
+                    Console.WriteLine("This is not an image file");
+                }
+            }
+        }
+
         private void btn_quitter_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -32,35 +64,7 @@ namespace WebSlidesUploader
 
                 
 
-                // Read the files
-                foreach (String file in openFileDialog1.FileNames)
-                {
-                    // Create a PictureBox.
-                    try
-                    {
-                        PictureBox pb = new PictureBox();
-                        Image loadedImage = Image.FromFile(file);
-                        pb.Height = loadedImage.Height;
-                        pb.Width = loadedImage.Width;
-                        pb.Image = loadedImage;
-                        //flowLayoutPanel1.Controls.Add(pb);
-                    }
-                    catch (SecurityException ex)
-                    {
-                        // The user lacks appropriate permissions to read files, discover paths, etc.
-                        MessageBox.Show("Security error. Please contact your administrator for details.\n\n" +
-                            "Error message: " + ex.Message + "\n\n" +
-                            "Details (send to Support):\n\n" + ex.StackTrace
-                        );
-                    }
-                    catch (Exception ex)
-                    {
-                        // Could not load the image - probably related to Windows file system permissions.
-                        MessageBox.Show("Cannot display the image: " + file.Substring(file.LastIndexOf('\\'))
-                            + ". You may not have permission to read the file, or " +
-                            "it may be corrupt.\n\nReported error: " + ex.Message);
-                    }
-                }
+                
             }
         }
 
@@ -77,10 +81,11 @@ namespace WebSlidesUploader
             this.openFileDialog1.Title = "Chosissez les images à intégrer";
         }
 
+        /* TEST d'envoi en FTP */
         private void test()
         {
             // Get the object used to communicate with the server.
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://www.contoso.com/test.htm");
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://ftp.chiwawaweb.com");
             request.Method = WebRequestMethods.Ftp.DownloadFile;
 
             // This example assumes the FTP site uses anonymous logon.
@@ -99,50 +104,26 @@ namespace WebSlidesUploader
         }
 
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            InitializeOpenFileDialog();
-
-            DirectoryInfo dir = new DirectoryInfo(tmpSlidesPath);
-            FileInfo[] fichiers = dir.GetFiles();
-
-            foreach (FileInfo fichier in fichiers)
-            {
-                listView1.CheckBoxes = true;
-                listView1.Tag = fichier.Name;
-                
-                imageList1.Images.Add(Image.FromFile(tmpSlidesPath+fichier.Name));
-            }
-            listView1.View = View.LargeIcon;
-            imageList1.ImageSize = new Size(100, 60);
-            
-            listView1.LargeImageList = imageList1;
-
-            ListView.CheckedListViewItemCollection checkedItems = listView1.CheckedItems;
-
-            for (int j = 0; j < imageList1.Images.Count; j++)
-            {
-                ListViewItem item = new ListViewItem();
-                item.ImageIndex = j;
-                listView1.Items.Add(item);
-            }
-        }
-
-        private string msgtest = "";
-
+        // test de SUPPRESSION de la sélection...
+        string msg = "";
         private void button1_Click(object sender, EventArgs e)
         {
-            ListView.CheckedListViewItemCollection checkedItems = listView1.CheckedItems;
+            ListView.SelectedListViewItemCollection selectedItems = listView1.SelectedItems;
             int compteur = 0;
             
-            foreach (ListViewItem item in checkedItems)
+            foreach (ListViewItem item in selectedItems)
             {
-                msgtest += item.Tag.ToString();
+                //msgtest += item.Tag.ToString();
                 compteur = compteur + 1;
+                msg += item.Tag.ToString();
             }
-            MessageBox.Show(msgtest);
+
+
+            MessageBox.Show(msg.ToString());
 
             listView1.Refresh();
         }
+
+        
     }
 }

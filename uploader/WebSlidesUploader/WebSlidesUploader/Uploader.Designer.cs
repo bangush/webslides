@@ -67,9 +67,8 @@
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(315, 49);
-            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(473, 329);
+            this.listView1.Size = new System.Drawing.Size(533, 329);
             this.listView1.TabIndex = 3;
             this.listView1.TabStop = false;
             this.listView1.TileSize = new System.Drawing.Size(140, 30);
@@ -77,13 +76,13 @@
             // 
             // imageList1
             // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth16Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // btn_deleteAll
             // 
-            this.btn_deleteAll.Location = new System.Drawing.Point(676, 384);
+            this.btn_deleteAll.Location = new System.Drawing.Point(736, 384);
             this.btn_deleteAll.Name = "btn_deleteAll";
             this.btn_deleteAll.Size = new System.Drawing.Size(112, 23);
             this.btn_deleteAll.TabIndex = 4;
@@ -119,7 +118,9 @@
             // 
             // btn_test
             // 
-            this.btn_test.Location = new System.Drawing.Point(315, 424);
+            this.btn_test.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_test.ForeColor = System.Drawing.Color.Maroon;
+            this.btn_test.Location = new System.Drawing.Point(167, 218);
             this.btn_test.Name = "btn_test";
             this.btn_test.Size = new System.Drawing.Size(75, 23);
             this.btn_test.TabIndex = 8;
@@ -131,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(860, 480);
+            this.ClientSize = new System.Drawing.Size(904, 480);
             this.Controls.Add(this.btn_test);
             this.Controls.Add(this.btn_miseEnLigne);
             this.Controls.Add(this.btn_delete);
@@ -140,9 +141,11 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.btn_quitter);
             this.Controls.Add(this.btn_upload);
+            this.MaximizeBox = false;
             this.Name = "Uploader";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WebSlides Uploader";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Uploader_Load);
             this.ResumeLayout(false);
 
         }
