@@ -77,7 +77,7 @@
             // imageList1
             // 
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth16Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.ImageSize = new System.Drawing.Size(100, 56);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // btn_deleteAll

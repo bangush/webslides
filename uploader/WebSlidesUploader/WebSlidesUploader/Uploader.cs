@@ -28,7 +28,7 @@ namespace WebSlidesUploader
             //DirectoryInfo dir = new DirectoryInfo(@"c:\pics");
             this.listView1.View = View.LargeIcon;
             
-            this.imageList1.ImageSize = new Size(100, 100);
+            this.imageList1.ImageSize = new Size(100, 56);
             this.listView1.LargeImageList = this.imageList1;
             int j = 0;
             foreach (FileInfo file in dir.GetFiles())
@@ -106,22 +106,34 @@ namespace WebSlidesUploader
 
         // test de SUPPRESSION de la sélection...
         string msg = "";
+
         private void button1_Click(object sender, EventArgs e)
         {
+
             ListView.SelectedListViewItemCollection selectedItems = listView1.SelectedItems;
-            int compteur = 0;
-            
+
             foreach (ListViewItem item in selectedItems)
             {
-                //msgtest += item.Tag.ToString();
-                compteur = compteur + 1;
-                msg += item.Tag.ToString();
+                // affiche les noms des fichiers sélectionnés
+                msg += item.Tag.ToString()+"\n";
+                
             }
 
 
             MessageBox.Show(msg.ToString());
 
-            listView1.Refresh();
+            if (this.listView1.SelectedIndices.Count > 0)
+                for (int i = 0; i < this.listView1.SelectedIndices.Count; i++)
+                {
+                    this.listView1.Items[this.listView1.SelectedIndices[i]].Selected = false;
+                    
+
+                    
+                    
+                    this.listView1.Update();
+                }
+
+
         }
 
         
