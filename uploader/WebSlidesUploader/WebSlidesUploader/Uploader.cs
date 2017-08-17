@@ -78,7 +78,7 @@ namespace WebSlidesUploader
 
             // Allow the user to select multiple images.
             this.openFileDialog1.Multiselect = true;
-            this.openFileDialog1.Title = "Chosissez les images à intégrer";
+            this.openFileDialog1.Title = "Choisissez les images à intégrer";
         }
 
         /* TEST d'envoi en FTP */
@@ -115,22 +115,26 @@ namespace WebSlidesUploader
             foreach (ListViewItem item in selectedItems)
             {
                 // affectation du tableau contenant les noms de fichiers
+                
+                
+                // supprime les fichiers sélectionnés
+                
+                
+                
 
-                // affiche les noms des fichiers sélectionnés
+                // concaténation des noms des fichiers sélectionnés
                 msg += "- " +item.Tag.ToString()+"\n";
                 
             }
 
-
+            // TMP : affiche la concatenation
             MessageBox.Show(msg.ToString());
 
+            // deselectionne les fichiers
             if (this.listView1.SelectedIndices.Count > 0)
                 for (int i = 0; i < this.listView1.SelectedIndices.Count; i++)
                 {
                     this.listView1.Items[this.listView1.SelectedIndices[i]].Selected = false;
-                    
-                    
-                    
                     
                     this.listView1.Update();
                 }
