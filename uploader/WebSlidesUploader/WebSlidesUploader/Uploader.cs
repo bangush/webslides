@@ -114,8 +114,10 @@ namespace WebSlidesUploader
 
             foreach (ListViewItem item in selectedItems)
             {
+                // affectation du tableau contenant les noms de fichiers
+
                 // affiche les noms des fichiers sélectionnés
-                msg += item.Tag.ToString()+"\n";
+                msg += "- " +item.Tag.ToString()+"\n";
                 
             }
 
@@ -127,15 +129,19 @@ namespace WebSlidesUploader
                 {
                     this.listView1.Items[this.listView1.SelectedIndices[i]].Selected = false;
                     
-
+                    
                     
                     
                     this.listView1.Update();
                 }
 
 
+            msg = "";
+
+
+
         }
 
-        
+
     }
 }
