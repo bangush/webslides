@@ -45,6 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyFormater.cs" />
+    <Compile Include="MyListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyListView.Designer.cs">
+      <DependentUpon>MyListView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uploader.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MyListView.resx">
+      <DependentUpon>MyListView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Uploader.resx">
       <DependentUpon>Uploader.cs</DependentUpon>
     </EmbeddedResource>

@@ -20,7 +20,7 @@ namespace WebSlidesUploader
 
         private void Uploader_Load(object sender, EventArgs e)
         {
-            InitializeOpenFileDialog();
+
 
             DirectoryInfo dir = new DirectoryInfo(tmpSlidesPath);
             FileInfo[] fichiers = dir.GetFiles();
@@ -28,7 +28,7 @@ namespace WebSlidesUploader
             //DirectoryInfo dir = new DirectoryInfo(@"c:\pics");
             this.listView1.View = View.LargeIcon;
             
-            this.imageList1.ImageSize = new Size(100, 56);
+            this.imageList1.ImageSize = new Size(135, 76);
             this.listView1.LargeImageList = this.imageList1;
             int j = 0;
             foreach (FileInfo file in dir.GetFiles())
@@ -55,53 +55,13 @@ namespace WebSlidesUploader
             Application.Exit();
         }
 
-        private void btn_upload_Click(object sender, EventArgs e)
-        {
-            DialogResult dr = this.openFileDialog1.ShowDialog();
-            if (dr == System.Windows.Forms.DialogResult.OK)
-            {
-                // copie les fichiers sur le disque dur, dossier slides-tmp
-
-                
-
-                
-            }
-        }
 
 
 
-        private void InitializeOpenFileDialog()
-        {
-            // Set the file dialog to filter for graphics files.
-            this.openFileDialog1.Filter =
-                "Images (*.JPG)|*.JPG";
 
-            // Allow the user to select multiple images.
-            this.openFileDialog1.Multiselect = true;
-            this.openFileDialog1.Title = "Choisissez les images à intégrer";
-        }
 
-        /* TEST d'envoi en FTP */
-        private void test()
-        {
-            // Get the object used to communicate with the server.
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://ftp.chiwawaweb.com");
-            request.Method = WebRequestMethods.Ftp.DownloadFile;
 
-            // This example assumes the FTP site uses anonymous logon.
-            request.Credentials = new NetworkCredential("anonymous", "janeDoe@contoso.com");
 
-            FtpWebResponse response = (FtpWebResponse)request.GetResponse();
-
-            Stream responseStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(responseStream);
-            Console.WriteLine(reader.ReadToEnd());
-
-            Console.WriteLine("Download Complete, status {0}", response.StatusDescription);
-
-            reader.Close();
-            response.Close();
-        }
 
 
         // test de SUPPRESSION de la sélection...
@@ -115,15 +75,15 @@ namespace WebSlidesUploader
             foreach (ListViewItem item in selectedItems)
             {
                 // affectation du tableau contenant les noms de fichiers
-                
-                
+
+
                 // supprime les fichiers sélectionnés
-                
+                //File.Delete(tmpSlidesPath+item.Tag.ToString());
                 
                 
 
                 // concaténation des noms des fichiers sélectionnés
-                msg += "- " +item.Tag.ToString()+"\n";
+                msg += "- " +tmpSlidesPath+item.Tag.ToString()+"\n";
                 
             }
 
@@ -146,6 +106,9 @@ namespace WebSlidesUploader
 
         }
 
+        private void fichierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
