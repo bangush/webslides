@@ -25,7 +25,6 @@ namespace WebSlidesUploader
                 string msg = "Erreur :\n" + ex.Message;
                 MessageBox.Show(msg, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
     }
 }

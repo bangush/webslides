@@ -35,16 +35,18 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(493, 182);
+            this.progressBar.Location = new System.Drawing.Point(3, 3);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(100, 15);
             this.progressBar.TabIndex = 0;
+            this.progressBar.Visible = false;
             // 
             // lsv_thumbnails
             // 
-            this.lsv_thumbnails.Location = new System.Drawing.Point(0, 4);
+            this.lsv_thumbnails.Location = new System.Drawing.Point(0, 0);
+            this.lsv_thumbnails.Margin = new System.Windows.Forms.Padding(0);
             this.lsv_thumbnails.Name = "lsv_thumbnails";
-            this.lsv_thumbnails.Size = new System.Drawing.Size(593, 172);
+            this.lsv_thumbnails.Size = new System.Drawing.Size(342, 279);
             this.lsv_thumbnails.TabIndex = 1;
             this.lsv_thumbnails.UseCompatibleStateImageBehavior = false;
             // 
@@ -56,10 +58,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lsv_thumbnails);
+            this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.Controls.Add(this.progressBar);
+            this.Controls.Add(this.lsv_thumbnails);
             this.Name = "MyListView";
-            this.Size = new System.Drawing.Size(596, 200);
+            this.Size = new System.Drawing.Size(390, 327);
             this.ResumeLayout(false);
 
         }

@@ -261,6 +261,7 @@
             this.listView1.TabStop = false;
             this.listView1.TileSize = new System.Drawing.Size(140, 30);
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.Visible = false;
             // 
             // tab_remoteImages
             // 
@@ -288,7 +289,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(904, 614);
+            this.ClientSize = new System.Drawing.Size(904, 632);
             this.Controls.Add(this.tab_thumbnails);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.pictureBox1);

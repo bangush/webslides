@@ -52,6 +52,12 @@
     <Compile Include="MyListView.Designer.cs">
       <DependentUpon>MyListView.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyPictureBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyPictureBox.Designer.cs">
+      <DependentUpon>MyPictureBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uploader.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +68,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MyListView.resx">
       <DependentUpon>MyListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyPictureBox.resx">
+      <DependentUpon>MyPictureBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uploader.resx">
       <DependentUpon>Uploader.cs</DependentUpon>

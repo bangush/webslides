@@ -10,12 +10,24 @@ namespace WebSlidesUploader
 {
     public partial class Uploader : Form
     {
-
+        
         static String tmpSlidesPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6) + @"\slides-tmp\";
 
-        public Uploader()
+        private string CurrentFileName = "";
+        private string lastModifiedFileName = "";
+        private MyListView mylsv;
+
+        private bool showInfo;
+
+        public Uploader(string[] args)
         {
             InitializeComponent();
+
+            mylsv = new MyListView(this);
+            tab_localImages.Controls.Add(mylsv);
+            mylsv.Dock = DockStyle.Bottom;
+            mylsv.Margin = new Padding(0, 0, 0, 0);
+
         }
 
         private void Uploader_Load(object sender, EventArgs e)

@@ -8,3 +8,4 @@ C:\wamp64\www\webslides\uploader\WebSlidesUploader\WebSlidesUploader\obj\Debug\W
 C:\wamp64\www\webslides\uploader\WebSlidesUploader\WebSlidesUploader\obj\Debug\WebSlidesUploader.pdb
 C:\wamp64\www\webslides\uploader\WebSlidesUploader\WebSlidesUploader\obj\Debug\WebSlidesUploader.Uploader.resources
 C:\wamp64\www\webslides\uploader\WebSlidesUploader\WebSlidesUploader\obj\Debug\WebSlidesUploader.MyListView.resources
+C:\wamp64\www\webslides\uploader\WebSlidesUploader\WebSlidesUploader\obj\Debug\WebSlidesUploader.MyPictureBox.resources
