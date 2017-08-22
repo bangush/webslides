@@ -182,21 +182,79 @@ namespace WebSlidesUploader
             }
         }
 
-        
-
+        // appelé quand le backgroundworker rapporte une progression...
         private void bkgwk_openfiles_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            int size = packetSize;
+            int j = e.ProgressPercentage;
+            try
+            {
+                size = nbOfFilesToAdd - j * packetSize;
+                if (size > packetSize)
+                    size = packetSize;
 
+                ListViewItem[] lvi = new ListViewItem[size];
+
+                lsv_thumbnails.BeginUpdate();
+
+                for (int i = 0; i < packetSize && i + j * packetSize < nbOfFilesToAdd; i++)
+                    lsv_thumbnails.Items.Add(newFileNames[i + j * packetSize], Path.GetFileName(newFileNames[i + j * packetSize]), newFileNames[i + j * packetSize]);
+                progressBar.Value = j + 1;
+                lsv_thumbnails.EndUpdate();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            UpdateOpenFilesCount();
+            if (j == 0) // premier paquet
+            {
+                // le fichier courant est le premier que l'utilisateur vient d'ouvrir
+                currentFileName = lsv_thumbnails.Items[newFileNames[0]].Name;
+                lsv_thumbnails.Items[currentFileName].Selected = true;
+                lsv_thumbnails.Items[currentFileName].Focused = true;
+
+                parent.UpdateMainPhoto();
+            }
         }
 
+        // appelé quand le backgroundworker a terminé de chargé les images
         private void bkgwk_openfiles_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
+            progressBar.Hide();
         }
 
+        // crée la vignette d'une image. 
+        private Image CreateThumbnail(string filename)
+        {
+            Image img;
+            PropertyItem p = null;
+            byte[] imageBytes;
+            MemoryStream stream = null;
+
+            Stream originalstream = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            img = Image.FromStream(originalstream, false, false);
+
+            img.Dispose();
+
+            if (p != null)
+            {
+                imageBytes = p.Value;
+                stream = new MemoryStream(imageBytes.Length);
+                stream.Write(imageBytes, 0, imageBytes.Length);
+                img = Image.FromStream(stream);
+                stream.Close();
+            }
+            else
+            {
+                img = Image.FromStream(originalstream);
+            }
+            originalstream.Close();
+
+            return img;
+        }
 
         #endregion
-
 
     }
 }
