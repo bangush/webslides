@@ -13,10 +13,12 @@ namespace WebSlidesUploader
         
         static String tmpSlidesPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6) + @"\slides-tmp\";
 
+        #region Membres et constructeur
+
         private string CurrentFileName = "";
         private string lastModifiedFileName = "";
         private MyListView mylsv;
-
+        private MyPictureBox mypcb;
         private bool showInfo;
 
         public Uploader(string[] args)
@@ -27,40 +29,37 @@ namespace WebSlidesUploader
             tab_localImages.Controls.Add(mylsv);
             mylsv.Dock = DockStyle.Bottom;
             mylsv.Margin = new Padding(0, 0, 0, 0);
-
+            mypcb = new MyPictureBox(this);
+            Controls.Add(mypcb);
+            mypcb.Location = new Point(408, 100);
+            mypcb.Size = new Size(400, 308);
+            showInfo = true;
+            if (args != null)
+                mylsv.AddFiles(args);
         }
 
-        private void Uploader_Load(object sender, EventArgs e)
+        #endregion
+
+        #region Evenement Ajoute des images
+
+        private void tsb_addFiles_Click(object sender, EventArgs e)
         {
+            OpenFileDialog opfd = new OpenFileDialog();
+            opfd.Multiselect = true;
+            opfd.Filter = "Images (*.JPG)|*.JPG;";
+            opfd.Title = "Sélectionnez les images";
+            if (opfd.ShowDialog() != DialogResult.OK)
+                return;
 
-
-            DirectoryInfo dir = new DirectoryInfo(tmpSlidesPath);
-            FileInfo[] fichiers = dir.GetFiles();
-
-            //DirectoryInfo dir = new DirectoryInfo(@"c:\pics");
-            this.listView1.View = View.LargeIcon;
-            
-            this.imageList1.ImageSize = new Size(135, 76);
-            this.listView1.LargeImageList = this.imageList1;
-            int j = 0;
-            foreach (FileInfo file in dir.GetFiles())
-            {
-                try
-                {
-                    //this.imageList1.Images.Add(Image.FromFile(file.FullName));
-                    imageList1.Images.Add(file.Name, Image.FromFile(file.FullName));
-                    ListViewItem item = new ListViewItem(file.Name);
-                    item.Tag = file.Name;
-                    item.ImageIndex = j;
-                    this.listView1.Items.Add(item);
-                    j++;
-                }
-                catch
-                {
-                    Console.WriteLine("This is not an image file");
-                }
-            }
+            mylsv.AddFiles(opfd.FileNames);
         }
+
+        #endregion
+
+        #region Supprime les images
+
+
+        #endregion
 
         private void btn_quitter_Click(object sender, EventArgs e)
         {
@@ -122,5 +121,7 @@ namespace WebSlidesUploader
         {
 
         }
+
+        
     }
 }
