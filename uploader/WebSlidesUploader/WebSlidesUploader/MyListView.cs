@@ -46,7 +46,7 @@ namespace WebSlidesUploader
         }
 
         // nom du fichier courant
-        public string CurrentName
+        public string CurrentFileName
         {
             get { return currentFileName; }
         }

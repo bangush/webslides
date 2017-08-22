@@ -15,7 +15,7 @@ namespace WebSlidesUploader
 
         #region Membres et constructeur
 
-        private string CurrentFileName = "";
+        private string currentFileName = "";
         private string lastModifiedFileName = "";
         private MyListView mylsv;
         private MyPictureBox mypcb;
@@ -60,6 +60,14 @@ namespace WebSlidesUploader
 
 
         #endregion
+
+        // mise à jour de la picturebox et des informations de l'image
+        public void UpdateMainPhoto()
+        {
+            currentFileName = mylsv.CurrentFileName;
+            
+
+        }
 
         private void btn_quitter_Click(object sender, EventArgs e)
         {
