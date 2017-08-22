@@ -82,12 +82,56 @@ namespace WebSlidesUploader
             progressBar.Value = 0;
             bkgwk_openfiles.RunWorkerAsync();
         }
-        
-        
 
+        public string[] GetAllFilesNames()
+        {
+            string[] result = new string[lsv_thumbnails.Items.Count];
+            int i = 0;
+            foreach (ListViewItem lvi in lsv_thumbnails.Items)
+            {
+                result[i++] = lvi.Name;
+            }
+            return result;
+        }
+
+        // recupère les noms de tous les fichiers sélectionés dans la listview
+        public string[] GetSelectedFileNames()
+        {
+            string[] result = new string[lsv_thumbnails.SelectedItems.Count];
+            int i = 0;
+            foreach (ListViewItem lvi in lsv_thumbnails.SelectedItems)
+            {
+                result[i++] = lvi.Name;
+            }
+            return result;
+        }
+        
+        // mise à jour du label indiquant le nombre de fichiers ouverts
+        private void UpdateOpenFilesCount()
+        {
+            if (lsv_thumbnails.Items.Count <= 1)
+                lbl_counter.Text = lsv_thumbnails.Items.Count + "image ouverte";
+            else lbl_counter.Text = lsv_thumbnails.Items.Count + "images ouvertes";
+        }
 
 
         #endregion
+
+        #region Supprime image
+
+
+        #endregion
+
+        #region Evénements Clavier et souris
+
+        // l'utilisateur appuie sur un bouton de la souris
+        private void lsv_thumbnails_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        #endregion
+
 
     }
 }

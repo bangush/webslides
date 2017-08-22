@@ -42,7 +42,7 @@ namespace WebSlidesUploader
 
         #region Evenement Ajoute des images
 
-        private void tsb_addFiles_Click(object sender, EventArgs e)
+        private void Open_File_Click(object sender, EventArgs e)
         {
             OpenFileDialog opfd = new OpenFileDialog();
             opfd.Multiselect = true;
@@ -58,6 +58,7 @@ namespace WebSlidesUploader
 
         #region Supprime les images
 
+        // a faire
 
         #endregion
 
@@ -65,8 +66,22 @@ namespace WebSlidesUploader
         public void UpdateMainPhoto()
         {
             currentFileName = mylsv.CurrentFileName;
-            
+            mypcb.UpdateImage(currentFileName); // redimensionne la picturebox
 
+            // pas de fichier ouvert
+            if (currentFileName == null || currentFileName == "")
+            {
+                // infos de l'image mise à zéro
+            }
+            // mise à jour des infos de l'image
+            // taille
+            // poids
+            // etc.
+        }
+
+        private void tsb_addFiles_Click(object sender, EventArgs e)
+        {
+            Open_File_Click(sender, e);
         }
 
         private void btn_quitter_Click(object sender, EventArgs e)

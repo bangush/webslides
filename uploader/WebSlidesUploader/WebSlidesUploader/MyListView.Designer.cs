@@ -31,6 +31,7 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.lsv_thumbnails = new System.Windows.Forms.ListView();
             this.bkgwk_openfiles = new System.ComponentModel.BackgroundWorker();
+            this.lbl_counter = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // progressBar
@@ -49,21 +50,33 @@
             this.lsv_thumbnails.Size = new System.Drawing.Size(342, 279);
             this.lsv_thumbnails.TabIndex = 1;
             this.lsv_thumbnails.UseCompatibleStateImageBehavior = false;
+            this.lsv_thumbnails.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lsv_thumbnails_MouseDown);
             // 
             // bkgwk_openfiles
             // 
             this.bkgwk_openfiles.WorkerReportsProgress = true;
+            // 
+            // lbl_counter
+            // 
+            this.lbl_counter.AutoSize = true;
+            this.lbl_counter.Location = new System.Drawing.Point(3, 302);
+            this.lbl_counter.Name = "lbl_counter";
+            this.lbl_counter.Size = new System.Drawing.Size(43, 13);
+            this.lbl_counter.TabIndex = 2;
+            this.lbl_counter.Text = "counter";
             // 
             // MyListView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.Controls.Add(this.lbl_counter);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.lsv_thumbnails);
             this.Name = "MyListView";
             this.Size = new System.Drawing.Size(390, 327);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -72,5 +85,6 @@
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.ListView lsv_thumbnails;
         private System.ComponentModel.BackgroundWorker bkgwk_openfiles;
+        private System.Windows.Forms.Label lbl_counter;
     }
 }

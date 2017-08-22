@@ -65,10 +65,9 @@
             // 
             // btn_quitter
             // 
-            this.btn_quitter.Location = new System.Drawing.Point(1048, 657);
-            this.btn_quitter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_quitter.Location = new System.Drawing.Point(699, 456);
             this.btn_quitter.Name = "btn_quitter";
-            this.btn_quitter.Size = new System.Drawing.Size(290, 51);
+            this.btn_quitter.Size = new System.Drawing.Size(193, 33);
             this.btn_quitter.TabIndex = 1;
             this.btn_quitter.Text = "Quitter";
             this.btn_quitter.UseVisualStyleBackColor = true;
@@ -78,10 +77,9 @@
             // 
             this.btn_test.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_test.ForeColor = System.Drawing.Color.Maroon;
-            this.btn_test.Location = new System.Drawing.Point(507, 660);
-            this.btn_test.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_test.Location = new System.Drawing.Point(338, 429);
             this.btn_test.Name = "btn_test";
-            this.btn_test.Size = new System.Drawing.Size(112, 35);
+            this.btn_test.Size = new System.Drawing.Size(75, 23);
             this.btn_test.TabIndex = 8;
             this.btn_test.Text = "TEST";
             this.btn_test.UseVisualStyleBackColor = true;
@@ -90,10 +88,9 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Silver;
-            this.pictureBox1.Location = new System.Drawing.Point(628, 120);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox1.Location = new System.Drawing.Point(419, 78);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(710, 528);
+            this.pictureBox1.Size = new System.Drawing.Size(473, 343);
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
@@ -106,8 +103,7 @@
             this.toolStripMenuItem1});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
-            this.menuStrip.Size = new System.Drawing.Size(1356, 35);
+            this.menuStrip.Size = new System.Drawing.Size(912, 24);
             this.menuStrip.TabIndex = 10;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -120,37 +116,37 @@
             this.toolStripMenuItem2,
             this.quitterToolStripMenuItem});
             this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
-            this.fichierToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
+            this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.fichierToolStripMenuItem.Text = "Fichier";
             this.fichierToolStripMenuItem.Click += new System.EventHandler(this.fichierToolStripMenuItem_Click);
             // 
             // ajouterUneImageToolStripMenuItem
             // 
             this.ajouterUneImageToolStripMenuItem.Name = "ajouterUneImageToolStripMenuItem";
-            this.ajouterUneImageToolStripMenuItem.Size = new System.Drawing.Size(378, 30);
+            this.ajouterUneImageToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
             this.ajouterUneImageToolStripMenuItem.Text = "Ajouter une image...";
             // 
             // supprimerToutesLesImagesToolStripMenuItem
             // 
             this.supprimerToutesLesImagesToolStripMenuItem.Name = "supprimerToutesLesImagesToolStripMenuItem";
-            this.supprimerToutesLesImagesToolStripMenuItem.Size = new System.Drawing.Size(378, 30);
+            this.supprimerToutesLesImagesToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
             this.supprimerToutesLesImagesToolStripMenuItem.Text = "Supprimer toutes les images";
             // 
             // supprimerLesImagesSélectionnéesToolStripMenuItem
             // 
             this.supprimerLesImagesSélectionnéesToolStripMenuItem.Name = "supprimerLesImagesSélectionnéesToolStripMenuItem";
-            this.supprimerLesImagesSélectionnéesToolStripMenuItem.Size = new System.Drawing.Size(378, 30);
+            this.supprimerLesImagesSélectionnéesToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
             this.supprimerLesImagesSélectionnéesToolStripMenuItem.Text = "Supprimer les images sélectionnées";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(375, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(258, 6);
             // 
             // quitterToolStripMenuItem
             // 
             this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(378, 30);
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
             this.quitterToolStripMenuItem.Text = "Quitter";
             // 
             // toolStripMenuItem1
@@ -158,13 +154,13 @@
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aProposToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(32, 29);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(24, 20);
             this.toolStripMenuItem1.Text = "?";
             // 
             // aProposToolStripMenuItem
             // 
             this.aProposToolStripMenuItem.Name = "aProposToolStripMenuItem";
-            this.aProposToolStripMenuItem.Size = new System.Drawing.Size(184, 30);
+            this.aProposToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.aProposToolStripMenuItem.Text = "A propos...";
             // 
             // imageList1
@@ -183,10 +179,9 @@
             this.tsb_delAllFiles,
             this.toolStripSeparator1,
             this.tsb_synchroFTP});
-            this.toolStrip.Location = new System.Drawing.Point(0, 35);
+            this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStrip.Size = new System.Drawing.Size(1356, 31);
+            this.toolStrip.Size = new System.Drawing.Size(912, 31);
             this.toolStrip.TabIndex = 11;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -241,21 +236,19 @@
             // 
             this.tab_thumbnails.Controls.Add(this.tab_localImages);
             this.tab_thumbnails.Controls.Add(this.tab_remoteImages);
-            this.tab_thumbnails.Location = new System.Drawing.Point(18, 86);
-            this.tab_thumbnails.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tab_thumbnails.Location = new System.Drawing.Point(12, 56);
             this.tab_thumbnails.Name = "tab_thumbnails";
             this.tab_thumbnails.SelectedIndex = 0;
-            this.tab_thumbnails.Size = new System.Drawing.Size(602, 565);
+            this.tab_thumbnails.Size = new System.Drawing.Size(401, 367);
             this.tab_thumbnails.TabIndex = 12;
             // 
             // tab_localImages
             // 
             this.tab_localImages.Controls.Add(this.listView1);
-            this.tab_localImages.Location = new System.Drawing.Point(4, 29);
-            this.tab_localImages.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tab_localImages.Location = new System.Drawing.Point(4, 22);
             this.tab_localImages.Name = "tab_localImages";
-            this.tab_localImages.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tab_localImages.Size = new System.Drawing.Size(594, 532);
+            this.tab_localImages.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_localImages.Size = new System.Drawing.Size(393, 341);
             this.tab_localImages.TabIndex = 0;
             this.tab_localImages.Text = "Images locales";
             this.tab_localImages.UseVisualStyleBackColor = true;
@@ -266,9 +259,8 @@
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(588, 524);
+            this.listView1.Size = new System.Drawing.Size(393, 341);
             this.listView1.TabIndex = 4;
             this.listView1.TabStop = false;
             this.listView1.TileSize = new System.Drawing.Size(140, 30);
@@ -278,11 +270,10 @@
             // tab_remoteImages
             // 
             this.tab_remoteImages.Controls.Add(this.lbl_comingSoon);
-            this.tab_remoteImages.Location = new System.Drawing.Point(4, 29);
-            this.tab_remoteImages.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tab_remoteImages.Location = new System.Drawing.Point(4, 22);
             this.tab_remoteImages.Name = "tab_remoteImages";
-            this.tab_remoteImages.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tab_remoteImages.Size = new System.Drawing.Size(594, 532);
+            this.tab_remoteImages.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_remoteImages.Size = new System.Drawing.Size(393, 341);
             this.tab_remoteImages.TabIndex = 1;
             this.tab_remoteImages.Text = "Images serveur";
             this.tab_remoteImages.UseVisualStyleBackColor = true;
@@ -292,18 +283,17 @@
             this.lbl_comingSoon.AutoSize = true;
             this.lbl_comingSoon.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_comingSoon.ForeColor = System.Drawing.Color.Gray;
-            this.lbl_comingSoon.Location = new System.Drawing.Point(96, 238);
-            this.lbl_comingSoon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_comingSoon.Location = new System.Drawing.Point(64, 155);
             this.lbl_comingSoon.Name = "lbl_comingSoon";
-            this.lbl_comingSoon.Size = new System.Drawing.Size(397, 33);
+            this.lbl_comingSoon.Size = new System.Drawing.Size(267, 24);
             this.lbl_comingSoon.TabIndex = 0;
             this.lbl_comingSoon.Text = "Indisponible actuellement...";
             // 
             // Uploader
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1356, 972);
+            this.ClientSize = new System.Drawing.Size(912, 632);
             this.Controls.Add(this.tab_thumbnails);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.pictureBox1);
@@ -312,7 +302,6 @@
             this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "Uploader";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
