@@ -55,6 +55,9 @@
             // bkgwk_openfiles
             // 
             this.bkgwk_openfiles.WorkerReportsProgress = true;
+            this.bkgwk_openfiles.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bkgwk_openfiles_DoWork);
+            this.bkgwk_openfiles.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bkgwk_openfiles_ProgressChanged);
+            this.bkgwk_openfiles.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bkgwk_openfiles_RunWorkerCompleted);
             // 
             // lbl_counter
             // 

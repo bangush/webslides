@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace WebSlidesUploader
 {
@@ -21,7 +19,7 @@ namespace WebSlidesUploader
         private Uploader parent;
 
         private string currentFileName;
-        private string[] newFileName;
+        private string[] newFileNames;
         private int nbOfFilesToAdd = 0;
         delegate void AddImagesCallBack(int ind);
 
@@ -59,12 +57,12 @@ namespace WebSlidesUploader
         {
             nbOfFilesToAdd = 0;
 
-            newFileName = new string[filenames.Length];
+            newFileNames = new string[filenames.Length];
             for (int i = 0; i < filenames.Length; i++)
             {
                 // ajoute seulement les fichiers avec la bonne extension et qui ne sont pas déjà présents dans liste
                 if (MyFormater.IsPictureFile(filenames[i]) && !imgList.Images.ContainsKey(filenames[i]))
-                    newFileName[nbOfFilesToAdd++] = filenames[i];
+                    newFileNames[nbOfFilesToAdd++] = filenames[i];
             }
 
             if (nbOfFilesToAdd == 0) { return; }
@@ -127,8 +125,75 @@ namespace WebSlidesUploader
         // l'utilisateur appuie sur un bouton de la souris
         private void lsv_thumbnails_MouseDown(object sender, MouseEventArgs e)
         {
+            ListViewItem lvi = lvi = lsv_thumbnails.HitTest(e.X, e.Y).Item;
+
+            if (e.Button == MouseButtons.Right)
+            {
+                if (lvi == null)
+                    return;
+            }
+            else if (e.Button == MouseButtons.Left)
+            {
+                if (lvi != null)
+                    currentFileName = lvi.Name;
+                parent.UpdateMainPhoto();
+            }
+        }
+
+        #endregion
+
+        #region Remplissage des vignettes dans la listview avec le Backgroundworker
+
+        // crée des paquets de vignettes à ajouter. Annonce la progression après chaque ajout
+        private void bkgwk_openfiles_DoWork(object sender, DoWorkEventArgs e)
+        {
+            int NbOfPackets = nbOfFilesToAdd / packetSize + 1;
+
+            // pour chaque paquet
+            for(int j = 0; j < NbOfPackets; j++)
+            {
+                if (lsv_thumbnails.InvokeRequired) // pour résoudre le problème "cross thread"
+                {
+                    try
+                    {
+                        AddImagesCallBack d = new AddImagesCallBack(AddImages);
+                        Invoke(d, new object[] { j });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+
+                // rapporte la progression après la préparation de chaque paquet
+                bkgwk_openfiles.ReportProgress(j);
+
+                if (j != NbOfPackets - 1) // si ce n'est pas le dernier paquet
+                    Thread.Sleep(150); // pour que la méthode progressreport ait le temps de remplir la listview
+            }
+        }
+
+        // ajoute packetSize thumbnails to imgList
+        void AddImages(int ind)
+        {
+            for (int i = 0; i < packetSize && i + ind * packetSize < nbOfFilesToAdd; i++)
+            {
+                imgList.Images.Add(newFileNames[i + ind * packetSize], CreateThumbnail(newFileNames[i + ind * packetSize]));
+            }
+        }
+
+        
+
+        private void bkgwk_openfiles_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
 
         }
+
+        private void bkgwk_openfiles_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+        }
+
 
         #endregion
 
