@@ -100,12 +100,12 @@ namespace WebSlidesUploader
 
             if (delete == true) // confirmation message only if the files are to be deleted
             {
-                string msg = "Are you sure you want to delete ";
+                string msg = "Êtes-vous certain de vous supprimer définitivement ce fichier sur le disque ? ";
                 if (count == 1)
-                    msg += "the file \"" + lsv_thumbnails.SelectedItems[0].Name + "\" ?";
-                else msg += "the " + count + " selected files ?";
+                    msg += "le fichier \"" + lsv_thumbnails.SelectedItems[0].Name + "\" ?";
+                else msg += "les " + count + " fichiers sélectionnés ?";
 
-                DialogResult res = MessageBox.Show(msg, "Delete file(s)", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult res = MessageBox.Show(msg, "Suppression de fichiers", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == DialogResult.No)
                     return;
             }

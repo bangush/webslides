@@ -110,13 +110,6 @@ namespace WebSlidesUploader
         {
             mylsv.CloseOrDeleteSelectedFiles(false);
 
-
-
-
-
-            // supprime les fichiers sélectionnés
-
-            //MessageBox.Show(currentFileName);
         }
     }
 }
