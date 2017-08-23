@@ -92,24 +92,70 @@ namespace WebSlidesUploader
             return result;
         }
 
-        // recupère les noms de tous les fichiers sélectionés dans la listview
-        public string[] GetSelectedFileNames()
+        public void CloseOrDeleteSelectedFiles(bool delete)
         {
-            string[] result = new string[lsv_thumbnails.SelectedItems.Count];
-            int i = 0;
-            foreach (ListViewItem lvi in lsv_thumbnails.SelectedItems)
+            int count = lsv_thumbnails.SelectedIndices.Count;
+            if (count == 0)
+                return;
+
+            if (delete == true) // confirmation message only if the files are to be deleted
             {
-                result[i++] = lvi.Name;
+                string msg = "Are you sure you want to delete ";
+                if (count == 1)
+                    msg += "the file \"" + lsv_thumbnails.SelectedItems[0].Name + "\" ?";
+                else msg += "the " + count + " selected files ?";
+
+                DialogResult res = MessageBox.Show(msg, "Delete file(s)", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == DialogResult.No)
+                    return;
             }
-            return result;
+
+            try
+            {
+                int ind = lsv_thumbnails.SelectedIndices[0]; //Indice of the 1st file selected 
+                lsv_thumbnails.BeginUpdate();
+                foreach (ListViewItem lvi in lsv_thumbnails.SelectedItems)// Removes the selected items from the lsv
+                {
+                    imgList.Images.RemoveByKey(lvi.Name);
+                    lsv_thumbnails.Items.RemoveByKey(lvi.Name);
+                    if (delete == true)
+                        File.Delete(lvi.Name);
+                }
+
+                //We will now try to select the item which was just before the 1st deleted one 
+                if (ind >= lsv_thumbnails.Items.Count)
+                    ind = lsv_thumbnails.Items.Count - 1;
+
+                if (ind < 0)// we closed/deleted all the files
+                {
+                    currentFileName = null;
+                }
+                else
+                {
+                    lsv_thumbnails.Items[ind].Selected = true; // Restores the selected index (different file)
+                    currentFileName = lsv_thumbnails.Items[ind].Name;
+                }
+                lsv_thumbnails.EndUpdate();
+                parent.UpdateMainPhoto();
+                UpdateOpenFilesCount();
+
+            }
+            catch (Exception e)
+            {
+                string title = "Close file(s)";
+                if (delete == true)
+                    title = "Delete file(s)";
+                MessageBox.Show(e.Message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
-        
+
         // mise à jour du label indiquant le nombre de fichiers ouverts
         private void UpdateOpenFilesCount()
         {
             if (lsv_thumbnails.Items.Count <= 1)
-                lbl_counter.Text = lsv_thumbnails.Items.Count + "image ouverte";
-            else lbl_counter.Text = lsv_thumbnails.Items.Count + "images ouvertes";
+                lbl_counter.Text = lsv_thumbnails.Items.Count + " image ouverte";
+            else lbl_counter.Text = lsv_thumbnails.Items.Count + " images ouvertes";
         }
 
 

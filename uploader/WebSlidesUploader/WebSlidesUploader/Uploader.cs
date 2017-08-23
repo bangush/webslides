@@ -98,53 +98,25 @@ namespace WebSlidesUploader
 
 
 
-        // test de SUPPRESSION de la sélection...
-        string msg = "";
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            ListView.SelectedListViewItemCollection selectedItems = listView1.SelectedItems;
-
-            foreach (ListViewItem item in selectedItems)
-            {
-                // affectation du tableau contenant les noms de fichiers
-
-
-                // supprime les fichiers sélectionnés
-                //File.Delete(tmpSlidesPath+item.Tag.ToString());
-                
-                
-
-                // concaténation des noms des fichiers sélectionnés
-                msg += "- " +tmpSlidesPath+item.Tag.ToString()+"\n";
-                
-            }
-
-            // TMP : affiche la concatenation
-            MessageBox.Show(msg.ToString());
-
-            // deselectionne les fichiers
-            if (this.listView1.SelectedIndices.Count > 0)
-                for (int i = 0; i < this.listView1.SelectedIndices.Count; i++)
-                {
-                    this.listView1.Items[this.listView1.SelectedIndices[i]].Selected = false;
-                    
-                    this.listView1.Update();
-                }
-
-
-            msg = "";
-
-
-
-        }
 
         private void fichierToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         
+        private void tsb_delFiles_Click(object sender, EventArgs e)
+        {
+            mylsv.CloseOrDeleteSelectedFiles(false);
+
+
+
+
+
+            // supprime les fichiers sélectionnés
+
+            //MessageBox.Show(currentFileName);
+        }
     }
 }

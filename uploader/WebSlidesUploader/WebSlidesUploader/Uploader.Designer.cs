@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Uploader));
             this.btn_quitter = new System.Windows.Forms.Button();
-            this.btn_test = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterUneImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,48 +50,23 @@
             this.tsb_synchroFTP = new System.Windows.Forms.ToolStripButton();
             this.tab_thumbnails = new System.Windows.Forms.TabControl();
             this.tab_localImages = new System.Windows.Forms.TabPage();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.tab_remoteImages = new System.Windows.Forms.TabPage();
             this.lbl_comingSoon = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.tab_thumbnails.SuspendLayout();
-            this.tab_localImages.SuspendLayout();
             this.tab_remoteImages.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_quitter
             // 
-            this.btn_quitter.Location = new System.Drawing.Point(699, 456);
+            this.btn_quitter.Location = new System.Drawing.Point(16, 429);
             this.btn_quitter.Name = "btn_quitter";
             this.btn_quitter.Size = new System.Drawing.Size(193, 33);
             this.btn_quitter.TabIndex = 1;
             this.btn_quitter.Text = "Quitter";
             this.btn_quitter.UseVisualStyleBackColor = true;
             this.btn_quitter.Click += new System.EventHandler(this.btn_quitter_Click);
-            // 
-            // btn_test
-            // 
-            this.btn_test.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_test.ForeColor = System.Drawing.Color.Maroon;
-            this.btn_test.Location = new System.Drawing.Point(338, 429);
-            this.btn_test.Name = "btn_test";
-            this.btn_test.Size = new System.Drawing.Size(75, 23);
-            this.btn_test.TabIndex = 8;
-            this.btn_test.Text = "TEST";
-            this.btn_test.UseVisualStyleBackColor = true;
-            this.btn_test.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Silver;
-            this.pictureBox1.Location = new System.Drawing.Point(419, 78);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(473, 343);
-            this.pictureBox1.TabIndex = 9;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
             // 
             // menuStrip
             // 
@@ -103,7 +76,7 @@
             this.toolStripMenuItem1});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(912, 24);
+            this.menuStrip.Size = new System.Drawing.Size(822, 24);
             this.menuStrip.TabIndex = 10;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -181,7 +154,7 @@
             this.tsb_synchroFTP});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(912, 31);
+            this.toolStrip.Size = new System.Drawing.Size(822, 31);
             this.toolStrip.TabIndex = 11;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -208,6 +181,7 @@
             this.tsb_delFiles.Name = "tsb_delFiles";
             this.tsb_delFiles.Size = new System.Drawing.Size(28, 28);
             this.tsb_delFiles.Text = "Effacer les images sélectionnées";
+            this.tsb_delFiles.Click += new System.EventHandler(this.tsb_delFiles_Click);
             // 
             // tsb_delAllFiles
             // 
@@ -244,35 +218,20 @@
             // 
             // tab_localImages
             // 
-            this.tab_localImages.Controls.Add(this.listView1);
             this.tab_localImages.Location = new System.Drawing.Point(4, 22);
             this.tab_localImages.Name = "tab_localImages";
-            this.tab_localImages.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_localImages.Padding = new System.Windows.Forms.Padding(3);
             this.tab_localImages.Size = new System.Drawing.Size(393, 341);
             this.tab_localImages.TabIndex = 0;
             this.tab_localImages.Text = "Images locales";
             this.tab_localImages.UseVisualStyleBackColor = true;
-            // 
-            // listView1
-            // 
-            this.listView1.BackColor = System.Drawing.Color.Silver;
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(393, 341);
-            this.listView1.TabIndex = 4;
-            this.listView1.TabStop = false;
-            this.listView1.TileSize = new System.Drawing.Size(140, 30);
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.Visible = false;
             // 
             // tab_remoteImages
             // 
             this.tab_remoteImages.Controls.Add(this.lbl_comingSoon);
             this.tab_remoteImages.Location = new System.Drawing.Point(4, 22);
             this.tab_remoteImages.Name = "tab_remoteImages";
-            this.tab_remoteImages.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_remoteImages.Padding = new System.Windows.Forms.Padding(3);
             this.tab_remoteImages.Size = new System.Drawing.Size(393, 341);
             this.tab_remoteImages.TabIndex = 1;
             this.tab_remoteImages.Text = "Images serveur";
@@ -293,11 +252,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(912, 632);
+            this.ClientSize = new System.Drawing.Size(822, 482);
             this.Controls.Add(this.tab_thumbnails);
             this.Controls.Add(this.toolStrip);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.btn_test);
             this.Controls.Add(this.btn_quitter);
             this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -306,13 +263,11 @@
             this.Name = "Uploader";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WebSlides Uploader";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             this.tab_thumbnails.ResumeLayout(false);
-            this.tab_localImages.ResumeLayout(false);
             this.tab_remoteImages.ResumeLayout(false);
             this.tab_remoteImages.PerformLayout();
             this.ResumeLayout(false);
@@ -322,8 +277,6 @@
 
         #endregion
         private System.Windows.Forms.Button btn_quitter;
-        private System.Windows.Forms.Button btn_test;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
@@ -341,7 +294,6 @@
         private System.Windows.Forms.TabControl tab_thumbnails;
         private System.Windows.Forms.TabPage tab_localImages;
         private System.Windows.Forms.TabPage tab_remoteImages;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ToolStripMenuItem supprimerToutesLesImagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem supprimerLesImagesSélectionnéesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;

@@ -34,22 +34,21 @@
             // 
             // pctbox
             // 
-            this.pctbox.Location = new System.Drawing.Point(6, 6);
-            this.pctbox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pctbox.Location = new System.Drawing.Point(4, 4);
             this.pctbox.Name = "pctbox";
-            this.pctbox.Size = new System.Drawing.Size(556, 503);
+            this.pctbox.Size = new System.Drawing.Size(371, 327);
+            this.pctbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pctbox.TabIndex = 0;
             this.pctbox.TabStop = false;
             // 
             // MyPictureBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.Controls.Add(this.pctbox);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MyPictureBox";
-            this.Size = new System.Drawing.Size(586, 540);
+            this.Size = new System.Drawing.Size(391, 351);
             ((System.ComponentModel.ISupportInitialize)(this.pctbox)).EndInit();
             this.ResumeLayout(false);
 
