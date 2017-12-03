@@ -7,3 +7,13 @@ C:\wamp64\www\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.csproj.Ge
 C:\wamp64\www\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.exe
 C:\wamp64\www\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.pdb
 C:\wamp64\www\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.Slides.resources
+C:\vs\webslides\client\WebSlides\WebSlides\bin\Debug\WebSlides.exe.config
+C:\vs\webslides\client\WebSlides\WebSlides\bin\Debug\WebSlides.exe
+C:\vs\webslides\client\WebSlides\WebSlides\bin\Debug\WebSlides.pdb
+C:\vs\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.csprojResolveAssemblyReference.cache
+C:\vs\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.Properties.Resources.resources
+C:\vs\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.Slides.resources
+C:\vs\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.csproj.GenerateResource.Cache
+C:\vs\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.csproj.CoreCompileInputs.cache
+C:\vs\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.exe
+C:\vs\webslides\client\WebSlides\WebSlides\obj\Debug\WebSlides.pdb
