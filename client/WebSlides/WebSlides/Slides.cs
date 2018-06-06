@@ -23,8 +23,7 @@ namespace WebSlides
 
         private static bool CheckInternetConnection()
         {
-            int Desc;
-            if (InternetGetConnectedState(out Desc, 0))
+            if (InternetGetConnectedState(out int Desc, 0))
             {
                 // connexion internet OK
                 return true;
